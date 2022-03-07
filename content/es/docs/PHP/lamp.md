@@ -19,7 +19,7 @@ Para ello usamos las siguientes tecnologías:
 * `Linux`, sistema operativo;
 * `Apache` o `nginx`, servidor web;
 * `MySQL`, `MariaDB`, gestores de bases de datos;
-* `Perl`, lenguaje de programación.
+* `PHP`, lenguaje de programación.
 
 
 ## Instalación base

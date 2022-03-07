@@ -38,7 +38,7 @@
 &lt;li&gt;&lt;code&gt;Linux&lt;/code&gt;, sistema operativo;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Apache&lt;/code&gt; o &lt;code&gt;nginx&lt;/code&gt;, servidor web;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;MySQL&lt;/code&gt;, &lt;code&gt;MariaDB&lt;/code&gt;, gestores de bases de datos;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Perl&lt;/code&gt;, lenguaje de programación.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PHP&lt;/code&gt;, lenguaje de programación.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;instalación-base&#34;&gt;Instalación base&lt;/h2&gt;
 &lt;h3 id=&#34;partimos-de-una-configuración-base&#34;&gt;Partimos de una configuración base&lt;/h3&gt;
@@ -72,6 +72,50 @@ sudo apt update
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;php&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;phpinfo&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;();&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#a40000&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Accedemos con el navegador. Si no aparece la información de php y vemos el contenido que hemos escrito, es que no se ha instalado correctamente. Tendrías que ver algo similar a esto:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://lmorillas.github.io/recursos-daw/Resources/phpinfo.png&#34; alt=&#34;phpinfo&#34;&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Instalación de WordPress</title>
+      <link>https://lmorillas.github.io/recursos-daw/docs/php/wordpress/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lmorillas.github.io/recursos-daw/docs/php/wordpress/</guid>
+      <description>
+        
+        
+        
+
+&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
+&lt;p&gt;Primera parte. Guión instalación CMS Wordpress&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;qué-es&#34;&gt;Qué es?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://es.wordpress.org/&#34;&gt;WordPress&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Busca más información sobre este CMS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;requisitos-para-la-instalación&#34;&gt;Requisitos para la instalación&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://es.wordpress.org/about/requirements/&#34;&gt;https://es.wordpress.org/about/requirements/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Anota los requisitos necesarios: servidor web, base de datos, etc.&lt;/p&gt;
+&lt;h2 id=&#34;instalación&#34;&gt;Instalación&lt;/h2&gt;
+&lt;p&gt;Esta es la guía oficial de instalación de WP&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://es.wordpress.org/download/#download-install&#34;&gt;https://es.wordpress.org/download/#download-install&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Aquí tienes documentación más detallada&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://wordpress.org/support/article/how-to-install-wordpress/&#34;&gt;https://wordpress.org/support/article/how-to-install-wordpress/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://codex.wordpress.org/es:Instalando_WordPress&#34;&gt;https://codex.wordpress.org/es:Instalando_WordPress&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;manos-a-la-obra&#34;&gt;Manos a la obra&lt;/h2&gt;
+&lt;p&gt;¿Serías capaz de instalarlo en tu propio servidor con estas instrucciones? Usa el que has creado en la sección anterior (Vagrant con Apache, MariaDB y PHP)&lt;/p&gt;
+&lt;p&gt;Inténtalo y consulta tus problemas en el foro del curso.&lt;/p&gt;
+&lt;p&gt;Mäs adelante mostraremos una guía de instalación de WP paso a paso.&lt;/p&gt;
 
       </description>
     </item>
