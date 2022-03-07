@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Despliegue de  Apliaciones Web – Recursos</title>
-    <link>https://lmorillas.github.io/docs/</link>
-    <description>Recent content in Recursos on Despliegue de  Apliaciones Web</description>
+    <title>Despliegue de  Aplicaciones Web – Recursos</title>
+    <link>https://lmorillas.github.io/recursos-daw/docs/</link>
+    <description>Recent content in Recursos on Despliegue de  Aplicaciones Web</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	  <atom:link href="https://lmorillas.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://lmorillas.github.io/recursos-daw/docs/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -15,10 +15,10 @@
     
     <item>
       <title>Docs: Instalación base</title>
-      <link>https://lmorillas.github.io/docs/php/lamp/</link>
+      <link>https://lmorillas.github.io/recursos-daw/docs/php/lamp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://lmorillas.github.io/docs/php/lamp/</guid>
+      <guid>https://lmorillas.github.io/recursos-daw/docs/php/lamp/</guid>
       <description>
         
         
@@ -71,7 +71,7 @@ sudo apt update
 &lt;p&gt;Creamos un fichero &lt;code&gt;info.php&lt;/code&gt; en el &lt;code&gt;documentRoot&lt;/code&gt; (&lt;code&gt;/var/www/html&lt;/code&gt; ?) con el siguiente contenido:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;php&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;phpinfo&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;();&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#a40000&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Accedemos con el navegador. Si no aparece la información de php y vemos el contenido que hemos escrito, es que no se ha instalado correctamente. Tendrías que ver algo similar a esto:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://lmorillas.github.io/Resources/phpinfo.png&#34; alt=&#34;phpinfo&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lmorillas.github.io/recursos-daw/Resources/phpinfo.png&#34; alt=&#34;phpinfo&#34;&gt;&lt;/p&gt;
 
       </description>
     </item>

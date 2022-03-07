@@ -1,6 +1,5 @@
-#baseURL = "https://lmorillas.github.io/dwes"
-baseURL = "https://lmorillas.github.io"
-title = "Despliegue de Apliaciones Web"
+baseURL = "https://lmorillas.github.io/recursos-daw"
+title = "Despliegue de Aplicaciones Web"
 
 enableRobotsTXT = true
 
@@ -55,7 +54,7 @@ anchor = "smart"
 
 [languages]
 [languages.es]
-title = "Despliegue de  Apliaciones Web"
+title = "Despliegue de  Aplicaciones Web"
 description = "Documentación Módulo DAW"
 languageName ="Castellano"
 # Weight used for sorting.

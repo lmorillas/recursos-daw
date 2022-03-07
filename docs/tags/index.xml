@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Despliegue de  Apliaciones Web – Tags</title>
-    <link>https://lmorillas.github.io/tags/</link>
-    <description>Recent content in Tags on Despliegue de  Apliaciones Web</description>
+    <title>Despliegue de  Aplicaciones Web – Tags</title>
+    <link>https://lmorillas.github.io/recursos-daw/tags/</link>
+    <description>Recent content in Tags on Despliegue de  Aplicaciones Web</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	  <atom:link href="https://lmorillas.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://lmorillas.github.io/recursos-daw/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
       
