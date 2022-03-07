@@ -1,0 +1,80 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Despliegue de  Apliaciones Web – Recursos</title>
+    <link>https://lmorillas.github.io/docs/</link>
+    <description>Recent content in Recursos on Despliegue de  Apliaciones Web</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="https://lmorillas.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Instalación base</title>
+      <link>https://lmorillas.github.io/docs/php/lamp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lmorillas.github.io/docs/php/lamp/</guid>
+      <description>
+        
+        
+        
+
+&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;Instalación entoro LAMP&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://es.wikipedia.org/wiki/LAMP&#34;&gt;https://es.wikipedia.org/wiki/LAMP&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;El acrónimo &lt;strong&gt;LAMP&lt;/strong&gt; se refiere a un entorno configurado en un servidor que nos posibilita servir aplicaciones web escritas en PHP.&lt;/p&gt;
+&lt;p&gt;Para ello usamos las siguientes tecnologías:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Linux&lt;/code&gt;, sistema operativo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Apache&lt;/code&gt; o &lt;code&gt;nginx&lt;/code&gt;, servidor web;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MySQL&lt;/code&gt;, &lt;code&gt;MariaDB&lt;/code&gt;, gestores de bases de datos;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Perl&lt;/code&gt;, lenguaje de programación.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;instalación-base&#34;&gt;Instalación base&lt;/h2&gt;
+&lt;h3 id=&#34;partimos-de-una-configuración-base&#34;&gt;Partimos de una configuración base&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;vagrant init bento/ubuntu-20.04
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Edita el Vagrantile para hacer el forward del puerto 8080 al puerto 80&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;Vagrant&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;configure&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;do&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;|&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;config&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;|&lt;/span&gt;
+  &lt;span style=&#34;color:#000&#34;&gt;config&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;vm&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;box&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;bento/ubuntu-20.04&amp;#34;&lt;/span&gt;
+  &lt;span style=&#34;color:#000&#34;&gt;config&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;vm&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;network&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;forwarded_port&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;guest&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;80&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;host&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;8080&lt;/span&gt;
+&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Levanta y actualiza el sistema&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;vagrant up
+vagrant ssh
+sudo apt update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;mariadb&#34;&gt;mariadb&lt;/h3&gt;
+&lt;p&gt;Instalación del servidor de base de datos&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install mariadb-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;apache-y-php&#34;&gt;Apache y PHP&lt;/h3&gt;
+&lt;p&gt;Instalación de apache2 y del módulo que permite que apache2 interprete PHP (apache2 hará el papel de servidor web y de servidor de aplicaciones).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install apache2 libapache2-mod-php php php-mysql
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;configuración-de-php&#34;&gt;Configuración de PHP&lt;/h3&gt;
+&lt;p&gt;Archivos de configuración de PHP (según versión. En este caso 7.4):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/etc/php/7.4/cli&lt;/code&gt;: Configuración de php para &lt;code&gt;php7.4-cli&lt;/code&gt; (ejecución de php desde la línea de comandos)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/etc/php/7.4/apache2&lt;/code&gt;: Configuración de php para apache2 usado como módulo&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/etc/php/7.4/apache2/php.ini&lt;/code&gt;: Configuración de php&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/etc/php/7.4/fpm&lt;/code&gt;: Configuración de php para php-fpm&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/etc/php/7.4/mods-available&lt;/code&gt;: Módulos disponibles de php&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;comprobación&#34;&gt;Comprobación&lt;/h3&gt;
+&lt;p&gt;Creamos un fichero &lt;code&gt;info.php&lt;/code&gt; en el &lt;code&gt;documentRoot&lt;/code&gt; (&lt;code&gt;/var/www/html&lt;/code&gt; ?) con el siguiente contenido:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;php&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;phpinfo&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;();&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#a40000&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Accedemos con el navegador. Si no aparece la información de php y vemos el contenido que hemos escrito, es que no se ha instalado correctamente. Tendrías que ver algo similar a esto:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lmorillas.github.io/Resources/phpinfo.png&#34; alt=&#34;phpinfo&#34;&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
