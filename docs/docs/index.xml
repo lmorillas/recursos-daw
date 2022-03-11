@@ -156,7 +156,7 @@ sudo apt update
 &lt;li&gt;Cada sitio tendrá unos log de acceso y error específicos para poder depurar más fácil los errores.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;solución&#34;&gt;Solución&lt;/h2&gt;
-&lt;h3 id=&#34;prepaeración-del-entorno-en-el-host&#34;&gt;Prepaeración del entorno en el host&lt;/h3&gt;
+&lt;h3 id=&#34;preparación-del-entorno-en-el-host&#34;&gt;Preparación del entorno en el host&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Preparación de Vagrant/Virtualbox con Ubuntu 20.04&lt;/strong&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ vagrant init bento/ubuntu-20.04
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Vagrantfile&lt;/strong&gt;&lt;/p&gt;

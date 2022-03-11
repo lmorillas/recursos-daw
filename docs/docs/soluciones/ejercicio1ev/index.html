@@ -38,14 +38,14 @@ Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata 
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lmorillas.github.io/recursos-daw/docs/soluciones/ejercicio1ev/" /><meta property="article:section" content="docs" />
 
-<meta property="og:site_name" content="Despliegue de  Aplicaciones Web" />
+<meta property="article:modified_time" content="2022-03-11T17:16:00+01:00" /><meta property="og:site_name" content="Despliegue de  Aplicaciones Web" />
 
 <meta itemprop="name" content="Ejercicio 1 Evaluación">
 <meta itemprop="description" content="Una propuesta de solución al ejercicio de la primera evaluación: https://www.adistanciafparagon.es/mod/assign/view.php?id=46025
  Objetivo Configuración de un servidor apache para que muestre las páginas web de 4 empresas
 Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata de seguir todo el proceso necesario para que las webs sean accesibles en nuestro servidor:
  Configuración de virtualbox/vagrant Instalación y configuración de apache  Tienes los archivos de cada web en los archivos adicionales de la actividad.">
-
+<meta itemprop="dateModified" content="2022-03-11T17:16:00+01:00" />
 <meta itemprop="wordCount" content="485">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ejercicio 1 Evaluación"/>
@@ -205,7 +205,7 @@ Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata 
     <li><a href="#descripción">Descripción</a></li>
     <li><a href="#solución">Solución</a>
       <ul>
-        <li><a href="#prepaeración-del-entorno-en-el-host">Prepaeración del entorno en el host</a></li>
+        <li><a href="#preparación-del-entorno-en-el-host">Preparación del entorno en el host</a></li>
       </ul>
     </li>
   </ul>
@@ -318,7 +318,7 @@ Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata 
 <li>Cada sitio tendrá unos log de acceso y error específicos para poder depurar más fácil los errores.</li>
 </ul>
 <h2 id="solución">Solución</h2>
-<h3 id="prepaeración-del-entorno-en-el-host">Prepaeración del entorno en el host</h3>
+<h3 id="preparación-del-entorno-en-el-host">Preparación del entorno en el host</h3>
 <p><strong>Preparación de Vagrant/Virtualbox con Ubuntu 20.04</strong></p>
 <pre tabindex="0"><code>$ vagrant init bento/ubuntu-20.04
 </code></pre><p><strong>Vagrantfile</strong></p>
@@ -394,6 +394,10 @@ $ sudo systemctl  status apache2
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top">
+
+    Última modificación
+    March 11, 2022
+    : <a  href="https://github.com/lmorillas/recursos-daw/commit/15bba44c62979fa44c1f3983ed3cafc7cacaff6d">soluciones ev1 (15bba44)</a>
 
 </div>
 

@@ -34,7 +34,7 @@ Sigue todos los pasos necesarios para poner en funcionamiento las sitios web. Co
 
 ## Solución
 
-### Prepaeración del entorno en el host
+### Preparación del entorno en el host
 
 **Preparación de Vagrant/Virtualbox con Ubuntu 20.04**
 ```
@@ -129,7 +129,7 @@ ln -s /vagrant/webs/relojesvex.com /var/www/relojesvex.com
 $ sudo systemctl reload apache2
 
 **Comprobamos el funcionamiento**
-
+ 
 Desde el host apuntamos con el navegador a las webs:
 
 * http://localhost:8080
