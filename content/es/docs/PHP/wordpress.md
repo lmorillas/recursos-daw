@@ -35,4 +35,5 @@ Inténtalo y consulta tus problemas en el foro del curso.
 
 Mäs adelante mostraremos una guía de instalación de WP paso a paso.
 
-
+## Un ejemplo de instalación 
+{{< youtube muAKPiPqW6g >}}
