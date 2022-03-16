@@ -4,6 +4,7 @@ title = "Despliegue de Aplicaciones Web"
 enableRobotsTXT = true
 
 # Hugo allows theme composition (and inheritance). The precedence is from left to right.
+#theme = ["docsy-sample"]
 theme = ["docsy"]
 
 # Will give values to .Lastmod etc.
@@ -75,6 +76,7 @@ weight = 1
 # Comment out if you don't want the "print entire section" link enabled.
 [outputs]
 section = ["HTML", "print", "RSS"]
+page = ["HTML", "print"]
 
 [params]
 copyright = "@lmorillas"
@@ -195,6 +197,14 @@ enable = false
 # 	url = "https://example.org/mail"
 # 	icon = "fa fa-envelope"
 #         desc = "Discuss development issues around the project"
+
+
+[params.print]
+disable_toc = true
+disable_footer = true
+disable_printable_section = true
+
+
 
 
 
