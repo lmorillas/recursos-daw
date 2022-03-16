@@ -26,33 +26,44 @@
 
 
 Objetivo
-Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; mod_wsgi. Explica los pasos más importantes y entrega una …">
+
+
+¿Qué es WSGI?
+
+
+Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; mod_wsgi. Explica los pasos más …">
 <meta property="og:title" content="Entorno básico con mod_wsgi" />
-<meta property="og:description" content="Objetivo Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
- Documentación original: https://fp.josedomingo.org/iaw2122/u03/modwsgi.html   Pasos instalación Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv
+<meta property="og:description" content="Objetivo   ¿Qué es WSGI?
+  Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
+  Documentación original: https://fp.josedomingo.org/iaw2122/u03/modwsgi.html
+   Documentación ¿Qué es WSGI?
+ https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html  Pasos instalación Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv
 Clonar el repositorio En /home/vagrant/
-$ git clone https://github.com/josedom24/flask_temperaturas.git Prepara máquina virtual para entornos de python En /home/vagrant/ ejecuta:
-$ python3 -m venv env # Crea un entorno virtual $ source env/bin/activate # Activa el entorno virtual $ cd flask_temperaturas $ pip install -r requirements." />
+$ git clone https://github." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lmorillas.github.io/recursos-daw/docs/python/entorno-basico/" /><meta property="article:section" content="docs" />
 
-<meta property="og:site_name" content="Despliegue de  Aplicaciones Web" />
+<meta property="article:modified_time" content="2022-03-16T12:45:17+01:00" /><meta property="og:site_name" content="Despliegue de  Aplicaciones Web" />
 
 <meta itemprop="name" content="Entorno básico con mod_wsgi">
-<meta itemprop="description" content="Objetivo Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
- Documentación original: https://fp.josedomingo.org/iaw2122/u03/modwsgi.html   Pasos instalación Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv
+<meta itemprop="description" content="Objetivo   ¿Qué es WSGI?
+  Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
+  Documentación original: https://fp.josedomingo.org/iaw2122/u03/modwsgi.html
+   Documentación ¿Qué es WSGI?
+ https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html  Pasos instalación Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv
 Clonar el repositorio En /home/vagrant/
-$ git clone https://github.com/josedom24/flask_temperaturas.git Prepara máquina virtual para entornos de python En /home/vagrant/ ejecuta:
-$ python3 -m venv env # Crea un entorno virtual $ source env/bin/activate # Activa el entorno virtual $ cd flask_temperaturas $ pip install -r requirements.">
-
-<meta itemprop="wordCount" content="417">
+$ git clone https://github.">
+<meta itemprop="dateModified" content="2022-03-16T12:45:17+01:00" />
+<meta itemprop="wordCount" content="426">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Entorno básico con mod_wsgi"/>
-<meta name="twitter:description" content="Objetivo Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
- Documentación original: https://fp.josedomingo.org/iaw2122/u03/modwsgi.html   Pasos instalación Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv
+<meta name="twitter:description" content="Objetivo   ¿Qué es WSGI?
+  Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
+  Documentación original: https://fp.josedomingo.org/iaw2122/u03/modwsgi.html
+   Documentación ¿Qué es WSGI?
+ https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html  Pasos instalación Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv
 Clonar el repositorio En /home/vagrant/
-$ git clone https://github.com/josedom24/flask_temperaturas.git Prepara máquina virtual para entornos de python En /home/vagrant/ ejecuta:
-$ python3 -m venv env # Crea un entorno virtual $ source env/bin/activate # Activa el entorno virtual $ cd flask_temperaturas $ pip install -r requirements."/>
+$ git clone https://github."/>
 
 
 
@@ -106,13 +117,26 @@ $ python3 -m venv env # Crea un entorno virtual $ source env/bin/activate # Acti
 
 <div class="pageinfo pageinfo-primary">
 <h2 id="objetivo">Objetivo</h2>
-<p>Configurar la aplicación <a href="https://github.com/josedom24/flask_temperaturas">flask_temperaturas</a> para que sea servida con apache2 + mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.</p>
 <ul>
-<li>Documentación original: <a href="https://fp.josedomingo.org/iaw2122/u03/modwsgi.html">https://fp.josedomingo.org/iaw2122/u03/modwsgi.html</a></li>
+<li>
+<p>¿Qué es WSGI?</p>
+</li>
+<li>
+<p>Configurar la aplicación <a href="https://github.com/josedom24/flask_temperaturas">flask_temperaturas</a> para que sea servida con apache2 + mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.</p>
+</li>
+<li>
+<p>Documentación original: <a href="https://fp.josedomingo.org/iaw2122/u03/modwsgi.html">https://fp.josedomingo.org/iaw2122/u03/modwsgi.html</a></p>
+</li>
 </ul>
 
 </div>
 
+<h2 id="documentación">Documentación</h2>
+<p><strong>¿Qué es WSGI?</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface">https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface</a></li>
+<li><a href="https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html">https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html</a></li>
+</ul>
 <h2 id="pasos-instalación">Pasos instalación</h2>
 <p>Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv</p>
 <h3 id="clonar-el-repositorio">Clonar el repositorio</h3>
@@ -160,6 +184,10 @@ Nuestro entorno virtual está en <code>/home/vagrant/env</code>.</p>
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top">
+
+    Última modificación
+    March 16, 2022
+    : <a  href="https://github.com/lmorillas/recursos-daw/commit/b2c808328f43765e2667ef57715024ab87b83fed">mod_wsgi (b2c8083)</a>
 
 </div>
 

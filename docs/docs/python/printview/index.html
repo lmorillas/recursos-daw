@@ -126,13 +126,26 @@
 
 <div class="pageinfo pageinfo-primary">
 <h2 id="objetivo">Objetivo</h2>
-<p>Configurar la aplicación <a href="https://github.com/josedom24/flask_temperaturas">flask_temperaturas</a> para que sea servida con apache2 + mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.</p>
 <ul>
-<li>Documentación original: <a href="https://fp.josedomingo.org/iaw2122/u03/modwsgi.html">https://fp.josedomingo.org/iaw2122/u03/modwsgi.html</a></li>
+<li>
+<p>¿Qué es WSGI?</p>
+</li>
+<li>
+<p>Configurar la aplicación <a href="https://github.com/josedom24/flask_temperaturas">flask_temperaturas</a> para que sea servida con apache2 + mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.</p>
+</li>
+<li>
+<p>Documentación original: <a href="https://fp.josedomingo.org/iaw2122/u03/modwsgi.html">https://fp.josedomingo.org/iaw2122/u03/modwsgi.html</a></p>
+</li>
 </ul>
 
 </div>
 
+<h2 id="documentación">Documentación</h2>
+<p><strong>¿Qué es WSGI?</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface">https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface</a></li>
+<li><a href="https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html">https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html</a></li>
+</ul>
 <h2 id="pasos-instalación">Pasos instalación</h2>
 <p>Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv</p>
 <h3 id="clonar-el-repositorio">Clonar el repositorio</h3>
@@ -176,6 +189,64 @@ Nuestro entorno virtual está en <code>/home/vagrant/env</code>.</p>
 <li>La directiva <code>WSGIScriptAlias</code> nos permite indicar que programa se va a ejecutar (el fichero WSGI: <code>/home/debian/flask_temperaturas/wsgi.py</code>) cuando se haga una petición a la url <code>/</code> y que proceso lo va a ejecutar.</li>
 </ul>
 <p>Reinicia el servicio web y prueba el funcionamiento. Si te da algún erro 500 puedes ver los errores, en <code>/var/log/apache2/error.log</code>.</p>
+
+</div>
+
+
+
+    
+	
+  
+    
+    
+	
+    
+
+<div class="td-content" style="page-break-before: always">
+    
+	<h1 id="pg-333c6cbe95ca27be71e8d839364d8ece">2 - Despliegue con Gunicorn</h1>
+    
+	
+
+<div class="pageinfo pageinfo-primary">
+<h2 id="objetivo">Objetivo</h2>
+<ul>
+<li>
+<p>Despliegue de una web con <strong>gunicorn</strong> y un proxy inverso</p>
+</li>
+<li>
+<p>Qué es un <a href="https://es.wikipedia.org/wiki/Proxy_inverso">proxy inverso</a>?</p>
+</li>
+<li>
+<p>Configurar la aplicación <a href="https://github.com/josedom24/flask_temperaturas">flask_temperaturas</a> para que sea servida con apache2 + gunicorn</p>
+</li>
+<li>
+<p>Documentación original: <a href="https://fp.josedomingo.org/iaw2122/u03/gunicorn.html">https://fp.josedomingo.org/iaw2122/u03/gunicorn.html</a></p>
+</li>
+</ul>
+
+</div>
+
+<h2 id="documentación">Documentación</h2>
+<p>Gunicorn es un servidor web que permite ejecutar una aplicación en un proceso independiente. Usamos los servidores web como proxies inversos que envían la petición python al servidor WSGI que estemos utilizando</p>
+<h2 id="configuración-vagrant">Configuración Vagrant</h2>
+<p>Configura el forward del puerto 8080 al puerto 8080 de la máquina virtual</p>
+<h2 id="instalar-gunicorn">Instalar Gunicorn</h2>
+<p>En <strong>/home/vagrant/</strong></p>
+<p>Activa en entorno virtual</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">source</span> env/bin/activate
+pip install gunicorn
+
+<span style="color:#ce5c00;font-weight:bold">(</span>env<span style="color:#ce5c00;font-weight:bold">)</span> /home/vagrant/flask_temperaturas$ gunicorn -w <span style="color:#0000cf;font-weight:bold">2</span> -b :8080 wsgi
+</code></pre></div><p>Comprueba con tu navegador que puedes acceder al puerto 8080 y que responde ahora gunicorn</p>
+<h2 id="sigue-la-documentación-basehttpsfpjosedomingoorgiaw2122u03gunicornhtm">Sigue la <a href="https://fp.josedomingo.org/iaw2122/u03/gunicorn.htm">documentación base</a></h2>
+<p><em>Atento porque puede cambiar alguna dirección</em></p>
+<ul>
+<li>Crea un servicio en systemd</li>
+<li>Activa e inicia el servicio</li>
+<li>Configura Apache2 compo un proxy inverso.</li>
+</ul>
+<p>Comprueba con tu navegador que puedes acceder al puerto 8000 y que resonde apache. Elimina el forward del puerto 8080 y reinicia vagrant. Comprueba que la aplicación sigue funcionando.</p>
 
 </div>
 

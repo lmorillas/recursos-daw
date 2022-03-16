@@ -8,11 +8,16 @@ description: >
 
 {{% pageinfo %}}
 ## Objetivo
-Configurar la aplicación [flask_temperaturas](https://github.com/josedom24/flask_temperaturas) para que sea servida con apache2 + mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
+* ¿Qué es WSGI?
+* Configurar la aplicación [flask_temperaturas](https://github.com/josedom24/flask_temperaturas) para que sea servida con apache2 + mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
 
 * Documentación original: https://fp.josedomingo.org/iaw2122/u03/modwsgi.html
 {{% /pageinfo %}}
 
+## Documentación
+**¿Qué es WSGI?**
+* https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface
+* https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html
 
 ## Pasos instalación
 Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv

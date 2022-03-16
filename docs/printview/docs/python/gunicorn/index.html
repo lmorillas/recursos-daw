@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.88.1" /><link rel="canonical" type="text/html" href="https://lmorillas.github.io/recursos-daw/docs/python/gunicorn/">
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="shortcut icon" href="/recursos-daw/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/recursos-daw/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-192x192.png" sizes="192x192">
+
+<title>Despliegue con Gunicorn | Despliegue de  Aplicaciones Web</title>
+
+
+  
+  <meta name="description" content="
+
+
+Objetivo
+
+
+Despliegue de una web con gunicorn y un proxy inverso
+
+
+Qué es un proxy inverso?
+
+
+Configurar la aplicación flask_temperaturas para que …">
+<meta property="og:title" content="Despliegue con Gunicorn" />
+<meta property="og:description" content="Objetivo   Despliegue de una web con gunicorn y un proxy inverso
+  Qué es un proxy inverso?
+  Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; gunicorn
+  Documentación original: https://fp.josedomingo.org/iaw2122/u03/gunicorn.html
+   Documentación Gunicorn es un servidor web que permite ejecutar una aplicación en un proceso independiente. Usamos los servidores web como proxies inversos que envían la petición python al servidor WSGI que estemos utilizando" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lmorillas.github.io/recursos-daw/docs/python/gunicorn/" /><meta property="article:section" content="docs" />
+
+<meta property="og:site_name" content="Despliegue de  Aplicaciones Web" />
+
+<meta itemprop="name" content="Despliegue con Gunicorn">
+<meta itemprop="description" content="Objetivo   Despliegue de una web con gunicorn y un proxy inverso
+  Qué es un proxy inverso?
+  Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; gunicorn
+  Documentación original: https://fp.josedomingo.org/iaw2122/u03/gunicorn.html
+   Documentación Gunicorn es un servidor web que permite ejecutar una aplicación en un proceso independiente. Usamos los servidores web como proxies inversos que envían la petición python al servidor WSGI que estemos utilizando">
+
+<meta itemprop="wordCount" content="170">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Despliegue con Gunicorn"/>
+<meta name="twitter:description" content="Objetivo   Despliegue de una web con gunicorn y un proxy inverso
+  Qué es un proxy inverso?
+  Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; gunicorn
+  Documentación original: https://fp.josedomingo.org/iaw2122/u03/gunicorn.html
+   Documentación Gunicorn es un servidor web que permite ejecutar una aplicación en un proceso independiente. Usamos los servidores web como proxies inversos que envían la petición python al servidor WSGI que estemos utilizando"/>
+
+
+
+
+<link rel="preload" href="/recursos-daw/scss/main.min.bd5285b713d3061549a6bfd34e5f4ec6775ede36672a3088260f0d420050647f.css" as="style">
+<link href="/recursos-daw/scss/main.min.bd5285b713d3061549a6bfd34e5f4ec6775ede36672a3088260f0d420050647f.css" rel="stylesheet" integrity="">
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+  </head>
+  <body class="td-page">
+    
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          
+          <main class="col p-md-3" role="main">
+            
+<div class="td-content">
+	<h1>Despliegue con Gunicorn</h1>
+	
+	<header class="article-meta">
+		
+		
+			
+				
+
+
+			
+				
+
+
+			
+		
+		
+	</header>    
+	
+
+<div class="pageinfo pageinfo-primary">
+<h2 id="objetivo">Objetivo</h2>
+<ul>
+<li>
+<p>Despliegue de una web con <strong>gunicorn</strong> y un proxy inverso</p>
+</li>
+<li>
+<p>Qué es un <a href="https://es.wikipedia.org/wiki/Proxy_inverso">proxy inverso</a>?</p>
+</li>
+<li>
+<p>Configurar la aplicación <a href="https://github.com/josedom24/flask_temperaturas">flask_temperaturas</a> para que sea servida con apache2 + gunicorn</p>
+</li>
+<li>
+<p>Documentación original: <a href="https://fp.josedomingo.org/iaw2122/u03/gunicorn.html">https://fp.josedomingo.org/iaw2122/u03/gunicorn.html</a></p>
+</li>
+</ul>
+
+</div>
+
+<h2 id="documentación">Documentación</h2>
+<p>Gunicorn es un servidor web que permite ejecutar una aplicación en un proceso independiente. Usamos los servidores web como proxies inversos que envían la petición python al servidor WSGI que estemos utilizando</p>
+<h2 id="configuración-vagrant">Configuración Vagrant</h2>
+<p>Configura el forward del puerto 8080 al puerto 8080 de la máquina virtual</p>
+<h2 id="instalar-gunicorn">Instalar Gunicorn</h2>
+<p>En <strong>/home/vagrant/</strong></p>
+<p>Activa en entorno virtual</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">source</span> env/bin/activate
+pip install gunicorn
+
+<span style="color:#ce5c00;font-weight:bold">(</span>env<span style="color:#ce5c00;font-weight:bold">)</span> /home/vagrant/flask_temperaturas$ gunicorn -w <span style="color:#0000cf;font-weight:bold">2</span> -b :8080 wsgi
+</code></pre></div><p>Comprueba con tu navegador que puedes acceder al puerto 8080 y que responde ahora gunicorn</p>
+<h2 id="sigue-la-documentación-basehttpsfpjosedomingoorgiaw2122u03gunicornhtm">Sigue la <a href="https://fp.josedomingo.org/iaw2122/u03/gunicorn.htm">documentación base</a></h2>
+<p><em>Atento porque puede cambiar alguna dirección</em></p>
+<ul>
+<li>Crea un servicio en systemd</li>
+<li>Activa e inicia el servicio</li>
+<li>Configura Apache2 compo un proxy inverso.</li>
+</ul>
+<p>Comprueba con tu navegador que puedes acceder al puerto 8000 y que resonde apache. Elimina el forward del puerto 8080 y reinicia vagrant. Comprueba que la aplicación sigue funcionando.</p>
+
+	
+	
+	<div class="text-muted mt-5 pt-3 border-top">
+
+</div>
+
+</div>
+
+
+          </main>
+        </div>
+      </div>
+      
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@8.11.2/dist/mermaid.min.js" integrity="sha384-m8Pdaep6Qk8sW3J6XhPOiwUww3maU9HxZTLvEfSEB4e1UVvTdHyfJsYmEfYqvwLC" crossorigin="anonymous"></script>
+
+
+
+<style>
+.markmap > svg {
+  width: 100%;
+  height: 300px;
+}
+</style>
+<script>
+window.markmap = {
+  autoLoader: { manual: true },
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
+
+
+<script src='/recursos-daw/js/tabpane-persist.js'></script>
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/recursos-daw/js/main.min.d89b9f38e2aa3a5216a1a07d13541127db0d326ce3bf3564c7aab2bf02cea962.js" integrity="sha256-2JufOOKqOlIWoaB9E1QRJ9sNMmzjvzVkx6qyvwLOqWI=" crossorigin="anonymous"></script>
+
+
+
+
+  </body>
+</html>
