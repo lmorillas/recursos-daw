@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.88.1" /><link rel="alternate" type="text/html" href="https://lmorillas.github.io/recursos-daw/printview/docs/soluciones/ejercicio1ev/">
+<meta name="generator" content="Hugo 0.88.1" /><link rel="alternate" type="text/html" href="https://lmorillas.github.io/recursos-daw/printview/docs/php/drupal/">
 <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 
 
@@ -18,42 +18,39 @@
 <link rel="icon" type="image/png" href="/recursos-daw/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/recursos-daw/favicons/android-192x192.png" sizes="192x192">
 
-<title>Ejercicio 1 Evaluación | Despliegue de  Aplicaciones Web</title>
+<title>Instalación de Drupal | Despliegue de  Aplicaciones Web</title>
 
 
   
   <meta name="description" content="
 
 
-Una propuesta de solución al ejercicio de la primera evaluación:
-https://www.adistanciafparagon.es/mod/assign/view.php?id=46025
-
-
-
-Objetivo …">
-<meta property="og:title" content="Ejercicio 1 Evaluación" />
-<meta property="og:description" content="Una propuesta de solución al ejercicio de la primera evaluación: https://www.adistanciafparagon.es/mod/assign/view.php?id=46025
- Objetivo Configuración de un servidor apache para que muestre las páginas web de 4 empresas
-Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata de seguir todo el proceso necesario para que las webs sean accesibles en nuestro servidor:
- Configuración de virtualbox/vagrant Instalación y configuración de apache  Tienes los archivos de cada web en los archivos adicionales de la actividad." />
+Objetivo:
+En esta tarea vas a instalar Drupal, un gestor de contenidos escrito en php.
+La tarea consiste en instalar el gestor de contenidos y …">
+<meta property="og:title" content="Instalación de Drupal" />
+<meta property="og:description" content="Objetivo: En esta tarea vas a instalar Drupal, un gestor de contenidos escrito en php.
+La tarea consiste en instalar el gestor de contenidos y documentar el proceso de instalación
+ Conocimiento previo Para realizar la tarea necesitas:
+ Servidor Ubuntu 20.04 configurado con vagrant para conexión ssh (ya lo hiciste en la tarea de wordpress) Saber qué es Drupal. Busca información en internet sobre CMS Drupal (qué es, url principal del sitio, dónde está la documentación, etc)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lmorillas.github.io/recursos-daw/docs/soluciones/ejercicio1ev/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="https://lmorillas.github.io/recursos-daw/docs/php/drupal/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2022-03-11T17:21:54+01:00" /><meta property="og:site_name" content="Despliegue de  Aplicaciones Web" />
+<meta property="og:site_name" content="Despliegue de  Aplicaciones Web" />
 
-<meta itemprop="name" content="Ejercicio 1 Evaluación">
-<meta itemprop="description" content="Una propuesta de solución al ejercicio de la primera evaluación: https://www.adistanciafparagon.es/mod/assign/view.php?id=46025
- Objetivo Configuración de un servidor apache para que muestre las páginas web de 4 empresas
-Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata de seguir todo el proceso necesario para que las webs sean accesibles en nuestro servidor:
- Configuración de virtualbox/vagrant Instalación y configuración de apache  Tienes los archivos de cada web en los archivos adicionales de la actividad.">
-<meta itemprop="dateModified" content="2022-03-11T17:21:54+01:00" />
-<meta itemprop="wordCount" content="485">
+<meta itemprop="name" content="Instalación de Drupal">
+<meta itemprop="description" content="Objetivo: En esta tarea vas a instalar Drupal, un gestor de contenidos escrito en php.
+La tarea consiste en instalar el gestor de contenidos y documentar el proceso de instalación
+ Conocimiento previo Para realizar la tarea necesitas:
+ Servidor Ubuntu 20.04 configurado con vagrant para conexión ssh (ya lo hiciste en la tarea de wordpress) Saber qué es Drupal. Busca información en internet sobre CMS Drupal (qué es, url principal del sitio, dónde está la documentación, etc).">
+
+<meta itemprop="wordCount" content="231">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Ejercicio 1 Evaluación"/>
-<meta name="twitter:description" content="Una propuesta de solución al ejercicio de la primera evaluación: https://www.adistanciafparagon.es/mod/assign/view.php?id=46025
- Objetivo Configuración de un servidor apache para que muestre las páginas web de 4 empresas
-Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata de seguir todo el proceso necesario para que las webs sean accesibles en nuestro servidor:
- Configuración de virtualbox/vagrant Instalación y configuración de apache  Tienes los archivos de cada web en los archivos adicionales de la actividad."/>
+<meta name="twitter:title" content="Instalación de Drupal"/>
+<meta name="twitter:description" content="Objetivo: En esta tarea vas a instalar Drupal, un gestor de contenidos escrito en php.
+La tarea consiste en instalar el gestor de contenidos y documentar el proceso de instalación
+ Conocimiento previo Para realizar la tarea necesitas:
+ Servidor Ubuntu 20.04 configurado con vagrant para conexión ssh (ya lo hiciste en la tarea de wordpress) Saber qué es Drupal. Busca información en internet sobre CMS Drupal (qué es, url principal del sitio, dónde está la documentación, etc)."/>
 
 
 
@@ -130,8 +127,8 @@ Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata 
   <input type="checkbox" id="m-recursos-dawdocspresentacic3b3n-check"/>
   <label for="m-recursos-dawdocspresentacic3b3n-check"><a href="/recursos-daw/docs/presentaci%C3%B3n/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-recursos-dawdocspresentacic3b3n"><span class="">Presentación</span></a></label>
   
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-recursos-dawdocsphp-li">
-  <input type="checkbox" id="m-recursos-dawdocsphp-check"/>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-recursos-dawdocsphp-li">
+  <input type="checkbox" id="m-recursos-dawdocsphp-check" checked/>
   <label for="m-recursos-dawdocsphp-check"><a href="/recursos-daw/docs/php/" title="Webs basadas en PHP &#43; BBDD" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-recursos-dawdocsphp"><span class="">PHP</span></a></label>
   
   <ul class="ul-2 foldable">
@@ -143,20 +140,20 @@ Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata 
   <input type="checkbox" id="m-recursos-dawdocsphpwordpress-check"/>
   <label for="m-recursos-dawdocsphpwordpress-check"><a href="/recursos-daw/docs/php/wordpress/" title="Instalación de WordPress" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-recursos-dawdocsphpwordpress"><span class="">Wordpress</span></a></label>
   
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-recursos-dawdocsphpdrupal-li">
-  <input type="checkbox" id="m-recursos-dawdocsphpdrupal-check"/>
-  <label for="m-recursos-dawdocsphpdrupal-check"><a href="/recursos-daw/docs/php/drupal/" title="Instalación de Drupal" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-recursos-dawdocsphpdrupal"><span class="">Drupal</span></a></label>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-recursos-dawdocsphpdrupal-li">
+  <input type="checkbox" id="m-recursos-dawdocsphpdrupal-check" checked/>
+  <label for="m-recursos-dawdocsphpdrupal-check"><a href="/recursos-daw/docs/php/drupal/" title="Instalación de Drupal" class="align-left pl-0  active td-sidebar-link td-sidebar-link__page" id="m-recursos-dawdocsphpdrupal"><span class="td-sidebar-nav-active-item">Drupal</span></a></label>
   
 </li>
   </ul>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-recursos-dawdocssoluciones-li">
-  <input type="checkbox" id="m-recursos-dawdocssoluciones-check" checked/>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-recursos-dawdocssoluciones-li">
+  <input type="checkbox" id="m-recursos-dawdocssoluciones-check"/>
   <label for="m-recursos-dawdocssoluciones-check"><a href="/recursos-daw/docs/soluciones/" title="Soluciones a ejercicios" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-recursos-dawdocssoluciones"><span class="">Soluciones</span></a></label>
   
   <ul class="ul-2 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-recursos-dawdocssolucionesejercicio1ev-li">
-  <input type="checkbox" id="m-recursos-dawdocssolucionesejercicio1ev-check" checked/>
-  <label for="m-recursos-dawdocssolucionesejercicio1ev-check"><a href="/recursos-daw/docs/soluciones/ejercicio1ev/" title="Ejercicio 1 Evaluación" class="align-left pl-0  active td-sidebar-link td-sidebar-link__page" id="m-recursos-dawdocssolucionesejercicio1ev"><span class="td-sidebar-nav-active-item">Ejercicio 1EV</span></a></label>
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-recursos-dawdocssolucionesejercicio1ev-li">
+  <input type="checkbox" id="m-recursos-dawdocssolucionesejercicio1ev-check"/>
+  <label for="m-recursos-dawdocssolucionesejercicio1ev-check"><a href="/recursos-daw/docs/soluciones/ejercicio1ev/" title="Ejercicio 1 Evaluación" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-recursos-dawdocssolucionesejercicio1ev"><span class="">Ejercicio 1EV</span></a></label>
   
 </li>
   </ul>
@@ -189,32 +186,20 @@ Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata 
     
     
 
-    <a href="https://github.com/lmorillas/recursos-daw/edit/main/content/es/docs/soluciones/ejercicio1ev.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Editar esta página</a>
-    <a href="https://github.com/lmorillas/recursos-daw/new/main/content/es/docs/soluciones/ejercicio1ev.md?filename=change-me.md&amp;value=---%0Atitle%3A&#43;%22Long&#43;Page&#43;Title%22%0AlinkTitle%3A&#43;%22Short&#43;Nav&#43;Title%22%0Aweight%3A&#43;100%0Adescription%3A&#43;%3E-%0A&#43;&#43;&#43;&#43;&#43;Page&#43;description&#43;for&#43;heading&#43;and&#43;indexes.%0A---%0A%0A%23%23&#43;Heading%0A%0AEdit&#43;this&#43;template&#43;to&#43;create&#43;your&#43;new&#43;page.%0A%0A%2A&#43;Give&#43;it&#43;a&#43;good&#43;name%2C&#43;ending&#43;in&#43;%60.md%60&#43;-&#43;e.g.&#43;%60getting-started.md%60%0A%2A&#43;Edit&#43;the&#43;%22front&#43;matter%22&#43;section&#43;at&#43;the&#43;top&#43;of&#43;the&#43;page&#43;%28weight&#43;controls&#43;how&#43;its&#43;ordered&#43;amongst&#43;other&#43;pages&#43;in&#43;the&#43;same&#43;directory%3B&#43;lowest&#43;number&#43;first%29.%0A%2A&#43;Add&#43;a&#43;good&#43;commit&#43;message&#43;at&#43;the&#43;bottom&#43;of&#43;the&#43;page&#43;%28%3C80&#43;characters%3B&#43;use&#43;the&#43;extended&#43;description&#43;field&#43;for&#43;more&#43;detail%29.%0A%2A&#43;Create&#43;a&#43;new&#43;branch&#43;so&#43;you&#43;can&#43;preview&#43;your&#43;new&#43;file&#43;and&#43;request&#43;a&#43;review&#43;via&#43;Pull&#43;Request.%0A" target="_blank"><i class="fa fa-edit fa-fw"></i> Create child page</a>
-    <a href="https://github.com/lmorillas/recursos-daw/issues/new?title=Ejercicio%201%20Evaluaci%c3%b3n" target="_blank"><i class="fab fa-github fa-fw"></i> Notificar una incidencia con la documentanción</a>
+    <a href="https://github.com/lmorillas/recursos-daw/edit/main/content/es/docs/PHP/drupal.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Editar esta página</a>
+    <a href="https://github.com/lmorillas/recursos-daw/new/main/content/es/docs/PHP/drupal.md?filename=change-me.md&amp;value=---%0Atitle%3A&#43;%22Long&#43;Page&#43;Title%22%0AlinkTitle%3A&#43;%22Short&#43;Nav&#43;Title%22%0Aweight%3A&#43;100%0Adescription%3A&#43;%3E-%0A&#43;&#43;&#43;&#43;&#43;Page&#43;description&#43;for&#43;heading&#43;and&#43;indexes.%0A---%0A%0A%23%23&#43;Heading%0A%0AEdit&#43;this&#43;template&#43;to&#43;create&#43;your&#43;new&#43;page.%0A%0A%2A&#43;Give&#43;it&#43;a&#43;good&#43;name%2C&#43;ending&#43;in&#43;%60.md%60&#43;-&#43;e.g.&#43;%60getting-started.md%60%0A%2A&#43;Edit&#43;the&#43;%22front&#43;matter%22&#43;section&#43;at&#43;the&#43;top&#43;of&#43;the&#43;page&#43;%28weight&#43;controls&#43;how&#43;its&#43;ordered&#43;amongst&#43;other&#43;pages&#43;in&#43;the&#43;same&#43;directory%3B&#43;lowest&#43;number&#43;first%29.%0A%2A&#43;Add&#43;a&#43;good&#43;commit&#43;message&#43;at&#43;the&#43;bottom&#43;of&#43;the&#43;page&#43;%28%3C80&#43;characters%3B&#43;use&#43;the&#43;extended&#43;description&#43;field&#43;for&#43;more&#43;detail%29.%0A%2A&#43;Create&#43;a&#43;new&#43;branch&#43;so&#43;you&#43;can&#43;preview&#43;your&#43;new&#43;file&#43;and&#43;request&#43;a&#43;review&#43;via&#43;Pull&#43;Request.%0A" target="_blank"><i class="fa fa-edit fa-fw"></i> Create child page</a>
+    <a href="https://github.com/lmorillas/recursos-daw/issues/new?title=Instalaci%c3%b3n%20de%20Drupal" target="_blank"><i class="fab fa-github fa-fw"></i> Notificar una incidencia con la documentanción</a>
     
 
   
   
-    <a id="print" href="https://lmorillas.github.io/recursos-daw/docs/soluciones/printview/"><i class="fa fa-print fa-fw"></i> Imprimir la sección entera</a>
+    <a id="print" href="https://lmorillas.github.io/recursos-daw/docs/php/printview/"><i class="fa fa-print fa-fw"></i> Imprimir la sección entera</a>
   
   </div>
 
 
             
 
-
-<div class="td-toc"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#objetivo">Objetivo</a></li>
-    <li><a href="#descripción">Descripción</a></li>
-    <li><a href="#solución">Solución</a>
-      <ul>
-        <li><a href="#preparación-del-entorno-en-el-host">Preparación del entorno en el host</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
 
 
 
@@ -264,14 +249,14 @@ Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata 
 
 
 <li class="breadcrumb-item" >
-	<a href="https://lmorillas.github.io/recursos-daw/docs/soluciones/">Soluciones</a>
+	<a href="https://lmorillas.github.io/recursos-daw/docs/php/">PHP</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="https://lmorillas.github.io/recursos-daw/docs/soluciones/ejercicio1ev/">Ejercicio 1EV</a>
+	<a href="https://lmorillas.github.io/recursos-daw/docs/php/drupal/">Drupal</a>
 </li>
 
 	</ol>
@@ -279,7 +264,7 @@ Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata 
 
             
 <div class="td-content">
-	<h1>Ejercicio 1 Evaluación</h1>
+	<h1>Instalación de Drupal</h1>
 	
 	<header class="article-meta">
 		
@@ -299,110 +284,33 @@ Descripción Nos han encargado poner en marcha las webs de 4 empresas. Se trata 
 	
 
 <div class="pageinfo pageinfo-primary">
-<p>Una propuesta de solución al ejercicio de la primera evaluación:
-<a href="https://www.adistanciafparagon.es/mod/assign/view.php?id=46025">https://www.adistanciafparagon.es/mod/assign/view.php?id=46025</a></p>
+<h2 id="objetivo">Objetivo:</h2>
+<p>En esta tarea vas a instalar Drupal, un gestor de contenidos escrito en php.</p>
+<p>La tarea consiste en instalar el gestor de contenidos y documentar el proceso de instalación</p>
 
 </div>
 
-<h2 id="objetivo">Objetivo</h2>
-<p>Configuración de un servidor apache para que muestre las páginas web de 4 empresas</p>
-<h2 id="descripción">Descripción</h2>
-<p>Nos han encargado poner en marcha las webs de 4 empresas. Se trata de seguir todo el proceso necesario para que las webs sean accesibles en nuestro servidor:</p>
+<h2 id="conocimiento-previo">Conocimiento previo</h2>
+<p>Para realizar la tarea necesitas:</p>
 <ul>
-<li>Configuración de virtualbox/vagrant</li>
-<li>Instalación y configuración de apache</li>
+<li>Servidor Ubuntu 20.04 configurado con vagrant para conexión ssh (ya lo hiciste en la tarea de wordpress)</li>
+<li>Saber qué es <strong>Drupal</strong>. Busca información en internet sobre CMS Drupal (qué es, url principal del sitio, dónde está la documentación, etc).</li>
+<li>Tener una cuenta en github. Si no tienes una cuenta, ve a  <a href="https://github.com/">https://github.com/</a> y crea una cuenta. Busca información sobre qué es github y git.</li>
+<li>Tener unas nociones elementales de git.</li>
 </ul>
-<p>Tienes los archivos de cada web en los archivos adicionales de la actividad.</p>
-<p>Sigue todos los pasos necesarios para poner en funcionamiento las sitios web. Configura también el archivo hosts para simular los nombres de dominio.</p>
+<h2 id="qué-tengo-que-hacer">¿Qué tengo que hacer?</h2>
 <ul>
-<li>Cada web tendrá que verse con la url del nombre (zip) y con la url con www</li>
-<li>Por defecto no se permitirá el listado de archivos o ficheros de las carpetas del servidor.</li>
-<li>En la web relojesvex.com habrá un directorio /privado que será privado para el usuario admin con password vexReloj .</li>
-<li>En la web relojesvex.com crea un directorio /fotos en el que se podrán colgar fotos y ver el listado de archivos que hay en esa carpeta.</li>
-<li>Crea un index en la raiz de apache (localhost) que muestre los enlaces a los 4 sitios web.</li>
-<li>Cada sitio tendrá unos log de acceso y error específicos para poder depurar más fácil los errores.</li>
-</ul>
-<h2 id="solución">Solución</h2>
-<h3 id="preparación-del-entorno-en-el-host">Preparación del entorno en el host</h3>
-<p><strong>Preparación de Vagrant/Virtualbox con Ubuntu 20.04</strong></p>
-<pre tabindex="0"><code>$ vagrant init bento/ubuntu-20.04
-</code></pre><p><strong>Vagrantfile</strong></p>
-<pre tabindex="0"><code>Vagrant.configure(&quot;2&quot;) do |config|
-  config.vm.box = &quot;bento/ubuntu-20.04&quot;
-  config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080, host_ip: &quot;127.0.0.1&quot;
-end
-</code></pre><p><strong>Copiar archivos de las webs</strong>
-Descargar y descomprimir:</p>
-<pre tabindex="0"><code>.
-├── Vagrantfile
-└── webs
-    ├── airspace.com
-    ├── hugoflotts.com
-    ├── jonathon.com
-    └── relojesvex.com
-</code></pre><p><strong>Editar archivo <em>hosts</em> en el equipo principal</strong></p>
-<p><strong>/etc/hosts</strong></p>
-<pre tabindex="0"><code>127.0.0.1       localhost
-127.0.0.1       airspace.com  www.airspace.com
-127.0.0.1       hugoflotts.com www.hugoflotts.com
-127.0.0.1       jonathon.com www.jonathon.com
-127.0.0.1       relojesvex.com www.relojesvex.com
-</code></pre><p><strong>Comprobamos que funciona bien</strong></p>
-<pre tabindex="0"><code>$ ping airspace.com
-PING airspace.com (127.0.0.1) 56(84) bytes of data.
-64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.032 ms
-64 bytes from localhost (127.0.0.1): icmp_seq=2 ttl=64 time=0.053 ms
-...
-$ ping www.airspace.com
-PING airspace.com (127.0.0.1) 56(84) bytes of data.
-64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.049 ms
-64 bytes from localhost (127.0.0.1): icmp_seq=2 ttl=64 time=0.043 ms
-...
-
-</code></pre><p><strong>Levantar máquina virtual y conectar por ssh</strong></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ vagrant up
-
-$ vagrant ssh
-</code></pre></div><p>El directorio <strong>/vagrant</strong> de la máquina virutal mapea el directorio de nuestro vagrant en el host.</p>
-<p><strong>Instalar apache</strong></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt update
-$ sudo apt install apache2
-$ sudo systemctl  status apache2
-● apache2.service - The Apache HTTP Server
-     Loaded: loaded <span style="color:#ce5c00;font-weight:bold">(</span>/lib/systemd/system/apache2.service<span style="color:#000;font-weight:bold">;</span> enabled<span style="color:#000;font-weight:bold">;</span> vendor preset: enabled<span style="color:#ce5c00;font-weight:bold">)</span>
-     Active: active <span style="color:#ce5c00;font-weight:bold">(</span>running<span style="color:#ce5c00;font-weight:bold">)</span> since Fri 2022-03-11 15:47:43 UTC<span style="color:#000;font-weight:bold">;</span> 29s ago
-       Docs: https://httpd.apache.org/docs/2.4/
-   Main PID: <span style="color:#0000cf;font-weight:bold">13490</span> <span style="color:#ce5c00;font-weight:bold">(</span>apache2<span style="color:#ce5c00;font-weight:bold">)</span>
-      Tasks: <span style="color:#0000cf;font-weight:bold">55</span> <span style="color:#ce5c00;font-weight:bold">(</span>limit: 1071<span style="color:#ce5c00;font-weight:bold">)</span>
-     Memory: 5.5M
-     CGroup: /system.slice/apache2.service
-             ├─13490 /usr/sbin/apache2 -k start
-             ├─13491 /usr/sbin/apache2 -k start
-             └─13492 /usr/sbin/apache2 -k start
-</code></pre></div><p><strong>Preparo enlace en /var/www</strong></p>
-<pre tabindex="0"><code>ln -s /vagrant/webs/relojesvex.com /var/www/relojesvex.com
-</code></pre><p><strong>Configurar VirutalHosts</strong></p>
-<pre tabindex="0"><code class="language-apache2" data-lang="apache2">&lt;VirtualHost *:80&gt;
-	DocumentRoot /var/www/relojesvex.com
-    ServerName relojesvex.com
-    ServerAlias www.relojesvex.com
-&lt;/VirtualHost&gt;
-</code></pre><p>$ sudo systemctl reload apache2</p>
-<p><strong>Comprobamos el funcionamiento</strong></p>
-<p>Desde el host apuntamos con el navegador a las webs:</p>
-<ul>
-<li>http://localhost:8080</li>
-<li><a href="http://relojesvex.com:8080">http://relojesvex.com:8080</a></li>
-<li><a href="http://www.relojesvex.com:8080">http://www.relojesvex.com:8080</a></li>
+<li>Instalar Drupal en el mismo servidor en el que instalaste Wordpress.</li>
+<li>La dirección de drupal será drupal.miservidor.com (configuralo en tu archivo hosts)</li>
+<li>Para los pasos de la instalación sigue las <a href="https://www.drupal.org/docs/user_guide/en/installation-chapter.html">instrucciones de la web oficial de drupal</a> o <a href="https://comoinstalar.me/como-instalar-drupal-en-ubuntu-20-04-lts/">estas por ejemplo</a>.</li>
+<li>Documenta todo lo que hagas y escríbelo en un archivo markdown. Aquí tienes la <a href="https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">sintaxis básica</a> . El archivo se llamara instalacion_drupal.md . Añade unas capturas de pantalla. Si usas un editor como Visual Studio, podrás previsualizar el documento en html.</li>
+<li>Crea un proyecto en github llamado instalaciones-daw. Y en una carpeta llamada drupal, coloca el texto y las imágenes de tu tutorial</li>
+<li>Como justificante de tu tarea tendrás que subir la dirección de tu repositorio instalaciones-daw de github.</li>
 </ul>
 
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top">
-
-    Última modificación
-    March 11, 2022
-    : <a  href="https://github.com/lmorillas/recursos-daw/commit/88a2dc6d7c737c9599d169e42eac78a383736f84">typo (88a2dc6)</a>
 
 </div>
 

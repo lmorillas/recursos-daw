@@ -120,5 +120,44 @@ sudo apt update
       </description>
     </item>
     
+    <item>
+      <title>Docs: Instalación de Drupal</title>
+      <link>https://lmorillas.github.io/recursos-daw/docs/php/drupal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lmorillas.github.io/recursos-daw/docs/php/drupal/</guid>
+      <description>
+        
+        
+        
+
+&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
+&lt;h2 id=&#34;objetivo&#34;&gt;Objetivo:&lt;/h2&gt;
+&lt;p&gt;En esta tarea vas a instalar Drupal, un gestor de contenidos escrito en php.&lt;/p&gt;
+&lt;p&gt;La tarea consiste en instalar el gestor de contenidos y documentar el proceso de instalación&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;conocimiento-previo&#34;&gt;Conocimiento previo&lt;/h2&gt;
+&lt;p&gt;Para realizar la tarea necesitas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Servidor Ubuntu 20.04 configurado con vagrant para conexión ssh (ya lo hiciste en la tarea de wordpress)&lt;/li&gt;
+&lt;li&gt;Saber qué es &lt;strong&gt;Drupal&lt;/strong&gt;. Busca información en internet sobre CMS Drupal (qué es, url principal del sitio, dónde está la documentación, etc).&lt;/li&gt;
+&lt;li&gt;Tener una cuenta en github. Si no tienes una cuenta, ve a  &lt;a href=&#34;https://github.com/&#34;&gt;https://github.com/&lt;/a&gt; y crea una cuenta. Busca información sobre qué es github y git.&lt;/li&gt;
+&lt;li&gt;Tener unas nociones elementales de git.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;qué-tengo-que-hacer&#34;&gt;¿Qué tengo que hacer?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Instalar Drupal en el mismo servidor en el que instalaste Wordpress.&lt;/li&gt;
+&lt;li&gt;La dirección de drupal será drupal.miservidor.com (configuralo en tu archivo hosts)&lt;/li&gt;
+&lt;li&gt;Para los pasos de la instalación sigue las &lt;a href=&#34;https://www.drupal.org/docs/user_guide/en/installation-chapter.html&#34;&gt;instrucciones de la web oficial de drupal&lt;/a&gt; o &lt;a href=&#34;https://comoinstalar.me/como-instalar-drupal-en-ubuntu-20-04-lts/&#34;&gt;estas por ejemplo&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Documenta todo lo que hagas y escríbelo en un archivo markdown. Aquí tienes la &lt;a href=&#34;https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax&#34;&gt;sintaxis básica&lt;/a&gt; . El archivo se llamara instalacion_drupal.md . Añade unas capturas de pantalla. Si usas un editor como Visual Studio, podrás previsualizar el documento en html.&lt;/li&gt;
+&lt;li&gt;Crea un proyecto en github llamado instalaciones-daw. Y en una carpeta llamada drupal, coloca el texto y las imágenes de tu tutorial&lt;/li&gt;
+&lt;li&gt;Como justificante de tu tarea tendrás que subir la dirección de tu repositorio instalaciones-daw de github.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
   </channel>
 </rss>

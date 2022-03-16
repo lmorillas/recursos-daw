@@ -3,7 +3,7 @@ title: "Instalación de WordPress"
 linkTitle: "Wordpress"
 weight: 10
 description: >
-  Instalación de WordPress
+  
 ---
 
 {{% pageinfo %}}
