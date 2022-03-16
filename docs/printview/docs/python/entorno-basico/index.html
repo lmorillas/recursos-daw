@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.88.1" /><link rel="canonical" type="text/html" href="https://lmorillas.github.io/recursos-daw/docs/python/entorno-basico/">
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="shortcut icon" href="/recursos-daw/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/recursos-daw/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-192x192.png" sizes="192x192">
+
+<title>Entorno básico con mod_wsgi | Despliegue de  Aplicaciones Web</title>
+
+
+  
+  <meta name="description" content="
+
+
+Objetivo
+Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; mod_wsgi. Explica los pasos más importantes y entrega una …">
+<meta property="og:title" content="Entorno básico con mod_wsgi" />
+<meta property="og:description" content="Objetivo Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
+ Documentación original: https://fp.josedomingo.org/iaw2122/u03/modwsgi.html   Pasos instalación Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv
+Clonar el repositorio En /home/vagrant/
+$ git clone https://github.com/josedom24/flask_temperaturas.git Prepara máquina virtual para entornos de python En /home/vagrant/ ejecuta:
+$ python3 -m venv env # Crea un entorno virtual $ source env/bin/activate # Activa el entorno virtual $ cd flask_temperaturas $ pip install -r requirements." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lmorillas.github.io/recursos-daw/docs/python/entorno-basico/" /><meta property="article:section" content="docs" />
+
+<meta property="og:site_name" content="Despliegue de  Aplicaciones Web" />
+
+<meta itemprop="name" content="Entorno básico con mod_wsgi">
+<meta itemprop="description" content="Objetivo Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
+ Documentación original: https://fp.josedomingo.org/iaw2122/u03/modwsgi.html   Pasos instalación Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv
+Clonar el repositorio En /home/vagrant/
+$ git clone https://github.com/josedom24/flask_temperaturas.git Prepara máquina virtual para entornos de python En /home/vagrant/ ejecuta:
+$ python3 -m venv env # Crea un entorno virtual $ source env/bin/activate # Activa el entorno virtual $ cd flask_temperaturas $ pip install -r requirements.">
+
+<meta itemprop="wordCount" content="417">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Entorno básico con mod_wsgi"/>
+<meta name="twitter:description" content="Objetivo Configurar la aplicación flask_temperaturas para que sea servida con apache2 &#43; mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
+ Documentación original: https://fp.josedomingo.org/iaw2122/u03/modwsgi.html   Pasos instalación Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv
+Clonar el repositorio En /home/vagrant/
+$ git clone https://github.com/josedom24/flask_temperaturas.git Prepara máquina virtual para entornos de python En /home/vagrant/ ejecuta:
+$ python3 -m venv env # Crea un entorno virtual $ source env/bin/activate # Activa el entorno virtual $ cd flask_temperaturas $ pip install -r requirements."/>
+
+
+
+
+<link rel="preload" href="/recursos-daw/scss/main.min.bd5285b713d3061549a6bfd34e5f4ec6775ede36672a3088260f0d420050647f.css" as="style">
+<link href="/recursos-daw/scss/main.min.bd5285b713d3061549a6bfd34e5f4ec6775ede36672a3088260f0d420050647f.css" rel="stylesheet" integrity="">
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+  </head>
+  <body class="td-page">
+    
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          
+          <main class="col p-md-3" role="main">
+            
+<div class="td-content">
+	<h1>Entorno básico con mod_wsgi</h1>
+	
+	<header class="article-meta">
+		
+		
+			
+				
+
+
+			
+				
+
+
+			
+		
+		
+	</header>    
+	
+
+<div class="pageinfo pageinfo-primary">
+<h2 id="objetivo">Objetivo</h2>
+<p>Configurar la aplicación <a href="https://github.com/josedom24/flask_temperaturas">flask_temperaturas</a> para que sea servida con apache2 + mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.</p>
+<ul>
+<li>Documentación original: <a href="https://fp.josedomingo.org/iaw2122/u03/modwsgi.html">https://fp.josedomingo.org/iaw2122/u03/modwsgi.html</a></li>
+</ul>
+
+</div>
+
+<h2 id="pasos-instalación">Pasos instalación</h2>
+<p>Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv</p>
+<h3 id="clonar-el-repositorio">Clonar el repositorio</h3>
+<p>En <strong>/home/vagrant/</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/josedom24/flask_temperaturas.git
+</code></pre></div><h3 id="prepara-máquina-virtual-para-entornos-de-python">Prepara máquina virtual para entornos de python</h3>
+<p>En <strong>/home/vagrant/</strong> ejecuta:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python3 -m venv env   <span style="color:#8f5902;font-style:italic"># Crea un entorno virtual</span>
+$ <span style="color:#204a87">source</span> env/bin/activate  <span style="color:#8f5902;font-style:italic"># Activa el entorno virtual</span>
+$ <span style="color:#204a87">cd</span> flask_temperaturas
+$ pip install -r requirements.txt  <span style="color:#8f5902;font-style:italic"># Instala dependencias</span>
+</code></pre></div><h3 id="instala-y-configura-el-módulo-wsgi-para-apache2">Instala y configura el módulo wsgi para apache2</h3>
+<pre><code>apt install libapache2-mod-wsgi-py3
+</code></pre>
+<p>Activa el módulo wsgi
+Nuestra aplicación se encuentra en <code>/home/vagrant/flask_temperaturas</code>.
+Nuestro entorno virtual está en <code>/home/vagrant/env</code>.</p>
+<h3 id="creación-del-fichero-wsgi">Creación del fichero wsgi</h3>
+<p>Lo primero que vamos a hacer es crear el fichero WSGI, que vamos a llamar <code>wsgi.py</code> estará en <code>/home/vagrant/flask_temperaturas</code> y tendrá el siguiente contenido:</p>
+<pre><code>from app import app as application
+</code></pre>
+<p>Explicación:</p>
+<ul>
+<li>El primer <code>app</code> corresponde con el nombre del módulo, es decir del fichero del programa, en nuestro caso se llama <code>app.py</code>.</li>
+<li>El segundo <code>app</code> corresponde a la aplicación flask creada en <code>app.py</code>:  <code>app = Flask(__name__)</code>.</li>
+<li>Importamos la aplicación flask, pero la llamamos <code>application</code> necesario para que el servidor web pueda enviarle peticiones.</li>
+</ul>
+<h3 id="configuración-de-apache2">Configuración de apache2</h3>
+<p>Yo he utilizado el virtualhost por defecto, si usamos otro virtualhost esta configuración ira en el fichero correspondiente:</p>
+<pre tabindex="0"><code class="language-apache2" data-lang="apache2">    WSGIDaemonProcess flask_temp python-path=/home/vagrant/flask_temperaturas:/home/vagrant/env/lib/python3.9/site-packages
+    WSGIProcessGroup flask_temp
+    WSGIScriptAlias / /home/vagrant/flask_temperaturas/wsgi.py process-group=flask_temp
+    &lt;Directory /home/vagrant/flask_temperaturas&gt;
+            Require all granted
+    &lt;/Directory&gt;
+</code></pre><p>Vamos a explicar la configuración:</p>
+<ul>
+<li>El <code>DocumentRoot</code>se indica el directorio donde está la aplicación. Realmente el servidor web siempre va a llamar al fichero WSGI <code>wsgi.py</code>, pero el DocumentRoot es necesario por si hay contenido estático.</li>
+<li>La directiva <code>WSGIDaemonProcess</code>: Se define un grupo de procesos que se van a encargar de ejecutar la aplicación (servidor de aplicaciones). A estos procesos se le ponen un nombre (<code>flask_temp</code>) y se indica los directorios donde se encuentran la aplicación y los paquetes necesarios (<code>python-path</code>), como puedes observar se pone el directorio donde esta la aplicación y el directorio donde se encuentran los paquetes en el entorno virtual, separados por dos puntos.</li>
+<li><code>WSGIProcessGroup</code>: Nos permite agrupar procesos. Se pone el misimo nombre que hemos definido en la directiva anterior.</li>
+<li>La directiva <code>WSGIScriptAlias</code> nos permite indicar que programa se va a ejecutar (el fichero WSGI: <code>/home/debian/flask_temperaturas/wsgi.py</code>) cuando se haga una petición a la url <code>/</code> y que proceso lo va a ejecutar.</li>
+</ul>
+<p>Reinicia el servicio web y prueba el funcionamiento. Si te da algún erro 500 puedes ver los errores, en <code>/var/log/apache2/error.log</code>.</p>
+
+	
+	
+	<div class="text-muted mt-5 pt-3 border-top">
+
+</div>
+
+</div>
+
+
+          </main>
+        </div>
+      </div>
+      
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@8.11.2/dist/mermaid.min.js" integrity="sha384-m8Pdaep6Qk8sW3J6XhPOiwUww3maU9HxZTLvEfSEB4e1UVvTdHyfJsYmEfYqvwLC" crossorigin="anonymous"></script>
+
+
+
+<style>
+.markmap > svg {
+  width: 100%;
+  height: 300px;
+}
+</style>
+<script>
+window.markmap = {
+  autoLoader: { manual: true },
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
+
+
+<script src='/recursos-daw/js/tabpane-persist.js'></script>
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/recursos-daw/js/main.min.d89b9f38e2aa3a5216a1a07d13541127db0d326ce3bf3564c7aab2bf02cea962.js" integrity="sha256-2JufOOKqOlIWoaB9E1QRJ9sNMmzjvzVkx6qyvwLOqWI=" crossorigin="anonymous"></script>
+
+
+
+
+  </body>
+</html>

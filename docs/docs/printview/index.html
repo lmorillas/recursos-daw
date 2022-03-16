@@ -373,7 +373,120 @@ sudo apt update
 
 <div class="td-content" style="page-break-before: always">
     
-	<h1 id="pg-72bd1e122949e95c5db2150f81f31746">3 - Soluciones a ejercicios</h1>
+	<h1 id="pg-92c27ea962011595550955f7c41b869a">3 - Webs basadas en Python</h1>
+    <div class="lead">Despliegue de webs escritas en python con acceso a bases de datos y cache.</div>
+	
+
+<div class="pageinfo pageinfo-primary">
+<h2 id="objetivos">Objetivos</h2>
+<ul>
+<li>Instalar los requisitos (servidor web + python + bbdd + cache) en un servidor</li>
+<li>Identificar los requisitos de la web a instalar</li>
+<li>Descargar e instalar un CMS Wordpress</li>
+</ul>
+
+</div>
+
+<p>Python es otro lenguaje de programación muy popular. Muchas webs y aplicaciones están programadas en Python. Tenemos que aprender cómo se instala un web escrita en python.</p>
+
+</div>
+
+
+
+    
+      
+  
+  
+  
+  
+
+  
+  
+
+  
+    
+    
+	
+    
+
+<div class="td-content" style="page-break-before: always">
+    
+	<h1 id="pg-ee01900dce7b933c36476788befc05ef">3.1 - Entorno básico con mod_wsgi</h1>
+    
+	
+
+<div class="pageinfo pageinfo-primary">
+<h2 id="objetivo">Objetivo</h2>
+<p>Configurar la aplicación <a href="https://github.com/josedom24/flask_temperaturas">flask_temperaturas</a> para que sea servida con apache2 + mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.</p>
+<ul>
+<li>Documentación original: <a href="https://fp.josedomingo.org/iaw2122/u03/modwsgi.html">https://fp.josedomingo.org/iaw2122/u03/modwsgi.html</a></li>
+</ul>
+
+</div>
+
+<h2 id="pasos-instalación">Pasos instalación</h2>
+<p>Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv</p>
+<h3 id="clonar-el-repositorio">Clonar el repositorio</h3>
+<p>En <strong>/home/vagrant/</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/josedom24/flask_temperaturas.git
+</code></pre></div><h3 id="prepara-máquina-virtual-para-entornos-de-python">Prepara máquina virtual para entornos de python</h3>
+<p>En <strong>/home/vagrant/</strong> ejecuta:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python3 -m venv env   <span style="color:#8f5902;font-style:italic"># Crea un entorno virtual</span>
+$ <span style="color:#204a87">source</span> env/bin/activate  <span style="color:#8f5902;font-style:italic"># Activa el entorno virtual</span>
+$ <span style="color:#204a87">cd</span> flask_temperaturas
+$ pip install -r requirements.txt  <span style="color:#8f5902;font-style:italic"># Instala dependencias</span>
+</code></pre></div><h3 id="instala-y-configura-el-módulo-wsgi-para-apache2">Instala y configura el módulo wsgi para apache2</h3>
+<pre><code>apt install libapache2-mod-wsgi-py3
+</code></pre>
+<p>Activa el módulo wsgi
+Nuestra aplicación se encuentra en <code>/home/vagrant/flask_temperaturas</code>.
+Nuestro entorno virtual está en <code>/home/vagrant/env</code>.</p>
+<h3 id="creación-del-fichero-wsgi">Creación del fichero wsgi</h3>
+<p>Lo primero que vamos a hacer es crear el fichero WSGI, que vamos a llamar <code>wsgi.py</code> estará en <code>/home/vagrant/flask_temperaturas</code> y tendrá el siguiente contenido:</p>
+<pre><code>from app import app as application
+</code></pre>
+<p>Explicación:</p>
+<ul>
+<li>El primer <code>app</code> corresponde con el nombre del módulo, es decir del fichero del programa, en nuestro caso se llama <code>app.py</code>.</li>
+<li>El segundo <code>app</code> corresponde a la aplicación flask creada en <code>app.py</code>:  <code>app = Flask(__name__)</code>.</li>
+<li>Importamos la aplicación flask, pero la llamamos <code>application</code> necesario para que el servidor web pueda enviarle peticiones.</li>
+</ul>
+<h3 id="configuración-de-apache2">Configuración de apache2</h3>
+<p>Yo he utilizado el virtualhost por defecto, si usamos otro virtualhost esta configuración ira en el fichero correspondiente:</p>
+<pre tabindex="0"><code class="language-apache2" data-lang="apache2">    WSGIDaemonProcess flask_temp python-path=/home/vagrant/flask_temperaturas:/home/vagrant/env/lib/python3.9/site-packages
+    WSGIProcessGroup flask_temp
+    WSGIScriptAlias / /home/vagrant/flask_temperaturas/wsgi.py process-group=flask_temp
+    &lt;Directory /home/vagrant/flask_temperaturas&gt;
+            Require all granted
+    &lt;/Directory&gt;
+</code></pre><p>Vamos a explicar la configuración:</p>
+<ul>
+<li>El <code>DocumentRoot</code>se indica el directorio donde está la aplicación. Realmente el servidor web siempre va a llamar al fichero WSGI <code>wsgi.py</code>, pero el DocumentRoot es necesario por si hay contenido estático.</li>
+<li>La directiva <code>WSGIDaemonProcess</code>: Se define un grupo de procesos que se van a encargar de ejecutar la aplicación (servidor de aplicaciones). A estos procesos se le ponen un nombre (<code>flask_temp</code>) y se indica los directorios donde se encuentran la aplicación y los paquetes necesarios (<code>python-path</code>), como puedes observar se pone el directorio donde esta la aplicación y el directorio donde se encuentran los paquetes en el entorno virtual, separados por dos puntos.</li>
+<li><code>WSGIProcessGroup</code>: Nos permite agrupar procesos. Se pone el misimo nombre que hemos definido en la directiva anterior.</li>
+<li>La directiva <code>WSGIScriptAlias</code> nos permite indicar que programa se va a ejecutar (el fichero WSGI: <code>/home/debian/flask_temperaturas/wsgi.py</code>) cuando se haga una petición a la url <code>/</code> y que proceso lo va a ejecutar.</li>
+</ul>
+<p>Reinicia el servicio web y prueba el funcionamiento. Si te da algún erro 500 puedes ver los errores, en <code>/var/log/apache2/error.log</code>.</p>
+
+</div>
+
+
+
+    
+	
+  
+
+    
+	
+  
+    
+    
+	
+    
+
+<div class="td-content" style="page-break-before: always">
+    
+	<h1 id="pg-72bd1e122949e95c5db2150f81f31746">4 - Soluciones a ejercicios</h1>
     <div class="lead">Soluciones a ejercicios del curso.</div>
 	
 </div>
@@ -398,7 +511,7 @@ sudo apt update
 
 <div class="td-content" style="">
     
-	<h1 id="pg-e9b4722b8fbe9a1116e74241733948e1">3.1 - Ejercicio 1 Evaluación</h1>
+	<h1 id="pg-e9b4722b8fbe9a1116e74241733948e1">4.1 - Ejercicio 1 Evaluación</h1>
     
 	
 
