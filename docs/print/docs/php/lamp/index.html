@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.88.1" /><link rel="canonical" type="text/html" href="https://lmorillas.github.io/recursos-daw/docs/php/lamp/">
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="shortcut icon" href="/recursos-daw/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/recursos-daw/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/recursos-daw/favicons/android-192x192.png" sizes="192x192">
+
+<title>Instalación base | Despliegue de  Aplicaciones Web</title>
+
+
+  <meta name="description" content="Introducción a entornos lamp
+">
+<meta property="og:title" content="Instalación base" />
+<meta property="og:description" content="Introducción a entornos lamp
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lmorillas.github.io/recursos-daw/docs/php/lamp/" /><meta property="article:section" content="docs" />
+
+<meta property="article:modified_time" content="2022-03-07T12:00:26+01:00" /><meta property="og:site_name" content="Despliegue de  Aplicaciones Web" />
+
+<meta itemprop="name" content="Instalación base">
+<meta itemprop="description" content="Introducción a entornos lamp
+">
+<meta itemprop="dateModified" content="2022-03-07T12:00:26+01:00" />
+<meta itemprop="wordCount" content="244">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Instalación base"/>
+<meta name="twitter:description" content="Introducción a entornos lamp
+"/>
+
+
+
+
+<link rel="preload" href="/recursos-daw/scss/main.min.bd5285b713d3061549a6bfd34e5f4ec6775ede36672a3088260f0d420050647f.css" as="style">
+<link href="/recursos-daw/scss/main.min.bd5285b713d3061549a6bfd34e5f4ec6775ede36672a3088260f0d420050647f.css" rel="stylesheet" integrity="">
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+  </head>
+  <body class="td-page">
+    
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          
+          <main class="col p-md-3" role="main">
+            
+<div class="td-content">
+	<h1>Instalación base</h1>
+	<div class="lead">Introducción a entornos lamp</div>
+	<header class="article-meta">
+		
+		
+			
+				
+
+
+			
+				
+
+
+			
+		
+		
+	</header>    
+	
+
+<div class="pageinfo pageinfo-primary">
+<ul>
+<li>Instalación entoro LAMP</li>
+<li><a href="https://es.wikipedia.org/wiki/LAMP">https://es.wikipedia.org/wiki/LAMP</a></li>
+</ul>
+
+</div>
+
+<p>El acrónimo <strong>LAMP</strong> se refiere a un entorno configurado en un servidor que nos posibilita servir aplicaciones web escritas en PHP.</p>
+<p>Para ello usamos las siguientes tecnologías:</p>
+<ul>
+<li><code>Linux</code>, sistema operativo;</li>
+<li><code>Apache</code> o <code>nginx</code>, servidor web;</li>
+<li><code>MySQL</code>, <code>MariaDB</code>, gestores de bases de datos;</li>
+<li><code>PHP</code>, lenguaje de programación.</li>
+</ul>
+<h2 id="instalación-base">Instalación base</h2>
+<h3 id="partimos-de-una-configuración-base">Partimos de una configuración base</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant init bento/ubuntu-20.04
+</code></pre></div><p>Edita el Vagrantile para hacer el forward del puerto 8080 al puerto 80</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#000">Vagrant</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">configure</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;2&#34;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">do</span> <span style="color:#ce5c00;font-weight:bold">|</span><span style="color:#000">config</span><span style="color:#ce5c00;font-weight:bold">|</span>
+  <span style="color:#000">config</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vm</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">box</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;bento/ubuntu-20.04&#34;</span>
+  <span style="color:#000">config</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vm</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">network</span> <span style="color:#4e9a06">&#34;forwarded_port&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">guest</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">80</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">host</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">8080</span>
+<span style="color:#204a87;font-weight:bold">end</span>
+</code></pre></div><p>Levanta y actualiza el sistema</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant up
+vagrant ssh
+sudo apt update
+</code></pre></div><h3 id="mariadb">mariadb</h3>
+<p>Instalación del servidor de base de datos</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install mariadb-server
+</code></pre></div><h3 id="apache-y-php">Apache y PHP</h3>
+<p>Instalación de apache2 y del módulo que permite que apache2 interprete PHP (apache2 hará el papel de servidor web y de servidor de aplicaciones).</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install apache2 libapache2-mod-php php php-mysql
+</code></pre></div><h3 id="configuración-de-php">Configuración de PHP</h3>
+<p>Archivos de configuración de PHP (según versión. En este caso 7.4):</p>
+<ul>
+<li><code>/etc/php/7.4/cli</code>: Configuración de php para <code>php7.4-cli</code> (ejecución de php desde la línea de comandos)</li>
+<li><code>/etc/php/7.4/apache2</code>: Configuración de php para apache2 usado como módulo</li>
+<li><code>/etc/php/7.4/apache2/php.ini</code>: Configuración de php</li>
+<li><code>/etc/php/7.4/fpm</code>: Configuración de php para php-fpm</li>
+<li><code>/etc/php/7.4/mods-available</code>: Módulos disponibles de php</li>
+</ul>
+<h3 id="comprobación">Comprobación</h3>
+<p>Creamos un fichero <code>info.php</code> en el <code>documentRoot</code> (<code>/var/www/html</code> ?) con el siguiente contenido:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#ce5c00;font-weight:bold">&lt;?</span><span style="color:#000">php</span> <span style="color:#000">phpinfo</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#8f5902;font-style:italic">?&gt;</span><span style="color:#a40000">
+</span></code></pre></div><p>Accedemos con el navegador. Si no aparece la información de php y vemos el contenido que hemos escrito, es que no se ha instalado correctamente. Tendrías que ver algo similar a esto:</p>
+<p><img src="/Resources/phpinfo.png" alt="phpinfo"></p>
+
+	
+	
+	<div class="text-muted mt-5 pt-3 border-top">
+
+    Última modificación
+    March 7, 2022
+    : <a  href="https://github.com/lmorillas/recursos-daw/commit/5efee5777944dc43432dfc3894059817e0bdccb6">wp (5efee57)</a>
+
+</div>
+
+</div>
+
+
+          </main>
+        </div>
+      </div>
+      
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@8.11.2/dist/mermaid.min.js" integrity="sha384-m8Pdaep6Qk8sW3J6XhPOiwUww3maU9HxZTLvEfSEB4e1UVvTdHyfJsYmEfYqvwLC" crossorigin="anonymous"></script>
+
+
+
+<style>
+.markmap > svg {
+  width: 100%;
+  height: 300px;
+}
+</style>
+<script>
+window.markmap = {
+  autoLoader: { manual: true },
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
+
+
+<script src='/recursos-daw/js/tabpane-persist.js'></script>
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/recursos-daw/js/main.min.d89b9f38e2aa3a5216a1a07d13541127db0d326ce3bf3564c7aab2bf02cea962.js" integrity="sha256-2JufOOKqOlIWoaB9E1QRJ9sNMmzjvzVkx6qyvwLOqWI=" crossorigin="anonymous"></script>
+
+
+
+
+  </body>
+</html>
