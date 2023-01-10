@@ -125,7 +125,44 @@ Require all granted
 Se trata de que no tengas que perder tiempo ejecutando comandos cuando hagas una nueva instalación.&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="readmemd">README.md&lt;/h2>
-&lt;p>Elimina el contenido del fichero README.md del repositorio y crea uno nuevo con la documentación (recuerda que tiene que estar escrito en markdown) de todo el proceso de instalación. Incluye también las instrucciones para que alguien pueda usar el repositorio y usar tu instalación de php.&lt;/p></description></item><item><title>Docs: Despliegue con Gunicorn</title><link>https://lmorillas.github.io/recursos-daw/docs/python/gunicorn/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lmorillas.github.io/recursos-daw/docs/python/gunicorn/</guid><description>
+&lt;p>Elimina el contenido del fichero README.md del repositorio y crea uno nuevo con la documentación (recuerda que tiene que estar escrito en markdown) de todo el proceso de instalación. Incluye también las instrucciones para que alguien pueda usar el repositorio y usar tu instalación de php.&lt;/p></description></item><item><title>Docs: Instalación de Bookmedic</title><link>https://lmorillas.github.io/recursos-daw/docs/php/bookmedic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lmorillas.github.io/recursos-daw/docs/php/bookmedic/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>Fuente: &lt;a href="https://fp.josedomingo.org/iaw2223/2_php/t3.html">https://fp.josedomingo.org/iaw2223/2_php/t3.html&lt;/a>&lt;/p>
+&lt;/div>
+&lt;h2 id="objetivo">Objetivo:&lt;/h2>
+&lt;ul>
+&lt;li>Desplegar una aplicación PHP construida a medida en tu servidor LAMP.&lt;/li>
+&lt;/ul>
+&lt;h2 id="recuerda">Recuerda&lt;/h2>
+&lt;p>Como ya sabemos tenemos 3 maneras principales para ejecutar código PHP:&lt;/p>
+&lt;ol>
+&lt;li>Desde la línea de comandos (&lt;strong>cli&lt;/strong>).&lt;/li>
+&lt;li>Con el servidor web &lt;strong>Apache2&lt;/strong> y el módulo &lt;strong>libapache2-mod-php&lt;/strong>.&lt;/li>
+&lt;li>Con un servidor web y el servidor de aplicaciones &lt;strong>fpm-php&lt;/strong>.&lt;/li>
+&lt;/ol>
+&lt;p>La configuración de php está dividida según desde donde se use (este ejemplo es para php 7.4):&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>/etc/php/7.4/cli&lt;/code>: Configuración de php para &lt;code>php7.4-cli&lt;/code>, cuando se utiliza php desde la línea de comandos.&lt;/li>
+&lt;li>&lt;code>/etc/php/7.4/apache2&lt;/code>: Configuración de php para apache2 cuando utiliza el módulo.&lt;/li>
+&lt;li>&lt;code>/etc/php/7.4/fpm&lt;/code>: Configuración de php para php-fpm.&lt;/li>
+&lt;li>&lt;code>/etc/php/7.4/mods-available&lt;/code>: Módulos disponibles de php que puedes estar configurados en cualquiera de los escenarios anteriores.&lt;/li>
+&lt;/ul>
+&lt;p>Si nos fijamos en la configuración de php para apache2 con el módulo:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>/etc/php/7.4/apache2/conf.d&lt;/code>: Módulos instalados en esta configuración de php (enlaces simbólicos a &lt;code>/etc/php/7.4/mods-available&lt;/code>).&lt;/li>
+&lt;li>&lt;code>/etc/php/7.4/apache2/php.ini&lt;/code>: Configuración de php para este escenario.&lt;/li>
+&lt;/ul>
+&lt;h2 id="qué-tienes-que-hacer">¿Qué tienes que hacer?&lt;/h2>
+&lt;p>A partir de una instalación básica de Apache + MariaDB + PHP, tienes que instalar la aplicación BookMedik, una aplicación web a medida para llevar el control de citas médicas, pacientes, médicos, historiales de citas, áreas médicas y mucho mas, pensado para centros médicos, clínicas y médicos independientes. Puedes encontrar la aplicación en &lt;a href="https://github.com/evilnapsis/bookmedik">https://github.com/evilnapsis/bookmedik&lt;/a>.&lt;/p>
+&lt;p>Para realizar la instalación sigue los siguientes pasos:&lt;/p>
+&lt;ol>
+&lt;li>Crea la base de datos y las tablas necesarias recuperando la copia de seguridad de la base de datos que encuentras en el fichero &lt;code>schema.sql&lt;/code>. Se creará una base de datos llamada &lt;code>bookmedik&lt;/code>. Crea un usuario que tenga privilegios sobre dicha base de datos.&lt;/li>
+&lt;li>Crea un virtualhost con el que accederás con el nombre &lt;code>bookmedik.tunombre.org&lt;/code>. Copia en el &lt;em>DocumentRoot&lt;/em> los ficheros de la aplicación (podrías clonar el repositorio en el &lt;em>DocumentRoot&lt;/em>).&lt;/li>
+&lt;li>Vamos a configurar el acceso a la base de datos desde la aplicación, para ello cambia el fichero &lt;code>core\controller\Database.php&lt;/code> indicando el usuario de acceso (el que has creado en el punto 1), su contraseña, la base de datos que se llama &lt;code>bookmedik&lt;/code> y la dirección donde se encuentra la base de datos, que en este caso es &lt;code>localhost&lt;/code>.&lt;/li>
+&lt;li>Accede a la aplicación web usando la URL configurada en el virtualhost (usa el usuario &lt;code>admin&lt;/code> y contraseña &lt;code>admin&lt;/code>).&lt;/li>
+&lt;li>Para esta aplicación no es necesario, pero en determinadas aplicaciones es posible que necesitemos cambiar la memoria RAM que puede utilizar. Cambia la memoria máxima de uso de un script PHP (parámetro &lt;code>memory_limit&lt;/code>) a 256Mb. ¿En qué fichero lo tienes que cambiar?. Investiga.&lt;/li>
+&lt;/ol>
+&lt;p>Una vez que esté la aplicación funcionando, configura un archivo &lt;code>bootstrap.sh&lt;/code> que instale la aplicación automáticamente.&lt;/p></description></item><item><title>Docs: Despliegue con Gunicorn</title><link>https://lmorillas.github.io/recursos-daw/docs/python/gunicorn/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lmorillas.github.io/recursos-daw/docs/python/gunicorn/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;h2 id="objetivo">Objetivo&lt;/h2>
 &lt;ul>
