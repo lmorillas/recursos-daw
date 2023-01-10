@@ -1,151 +1,101 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Despliegue de  Aplicaciones Web – Webs basadas en Python</title>
-    <link>https://lmorillas.github.io/recursos-daw/docs/python/</link>
-    <description>Recent content in Webs basadas en Python on Despliegue de  Aplicaciones Web</description>
-    <generator>Hugo -- gohugo.io</generator>
-    
-	  <atom:link href="https://lmorillas.github.io/recursos-daw/docs/python/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-      
-        
-      
-    
-    
-    <item>
-      <title>Docs: Entorno básico con mod_wsgi</title>
-      <link>https://lmorillas.github.io/recursos-daw/docs/python/entorno-basico/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://lmorillas.github.io/recursos-daw/docs/python/entorno-basico/</guid>
-      <description>
-        
-        
-        
-
-&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
-&lt;h2 id=&#34;objetivo&#34;&gt;Objetivo&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;¿Qué es WSGI?&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Configurar la aplicación &lt;a href=&#34;https://github.com/josedom24/flask_temperaturas&#34;&gt;flask_temperaturas&lt;/a&gt; para que sea servida con apache2 + mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Documentación original: &lt;a href=&#34;https://fp.josedomingo.org/iaw2122/u03/modwsgi.html&#34;&gt;https://fp.josedomingo.org/iaw2122/u03/modwsgi.html&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/div&gt;
-
-&lt;h2 id=&#34;documentación&#34;&gt;Documentación&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;¿Qué es WSGI?&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface&#34;&gt;https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html&#34;&gt;https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;pasos-instalación&#34;&gt;Pasos instalación&lt;/h2&gt;
-&lt;p&gt;Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv&lt;/p&gt;
-&lt;h3 id=&#34;clonar-el-repositorio&#34;&gt;Clonar el repositorio&lt;/h3&gt;
-&lt;p&gt;En &lt;strong&gt;/home/vagrant/&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git clone https://github.com/josedom24/flask_temperaturas.git
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;prepara-máquina-virtual-para-entornos-de-python&#34;&gt;Prepara máquina virtual para entornos de python&lt;/h3&gt;
-&lt;p&gt;En &lt;strong&gt;/home/vagrant/&lt;/strong&gt; ejecuta:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ python3 -m venv env   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Crea un entorno virtual&lt;/span&gt;
-$ &lt;span style=&#34;color:#204a87&#34;&gt;source&lt;/span&gt; env/bin/activate  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Activa el entorno virtual&lt;/span&gt;
-$ &lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; flask_temperaturas
-$ pip install -r requirements.txt  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Instala dependencias&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;instala-y-configura-el-módulo-wsgi-para-apache2&#34;&gt;Instala y configura el módulo wsgi para apache2&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;apt install libapache2-mod-wsgi-py3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Activa el módulo wsgi
-Nuestra aplicación se encuentra en &lt;code&gt;/home/vagrant/flask_temperaturas&lt;/code&gt;.
-Nuestro entorno virtual está en &lt;code&gt;/home/vagrant/env&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;creación-del-fichero-wsgi&#34;&gt;Creación del fichero wsgi&lt;/h3&gt;
-&lt;p&gt;Lo primero que vamos a hacer es crear el fichero WSGI, que vamos a llamar &lt;code&gt;wsgi.py&lt;/code&gt; estará en &lt;code&gt;/home/vagrant/flask_temperaturas&lt;/code&gt; y tendrá el siguiente contenido:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;from app import app as application
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Explicación:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;El primer &lt;code&gt;app&lt;/code&gt; corresponde con el nombre del módulo, es decir del fichero del programa, en nuestro caso se llama &lt;code&gt;app.py&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;El segundo &lt;code&gt;app&lt;/code&gt; corresponde a la aplicación flask creada en &lt;code&gt;app.py&lt;/code&gt;:  &lt;code&gt;app = Flask(__name__)&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Importamos la aplicación flask, pero la llamamos &lt;code&gt;application&lt;/code&gt; necesario para que el servidor web pueda enviarle peticiones.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;configuración-de-apache2&#34;&gt;Configuración de apache2&lt;/h3&gt;
-&lt;p&gt;Yo he utilizado el virtualhost por defecto, si usamos otro virtualhost esta configuración ira en el fichero correspondiente:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-apache2&#34; data-lang=&#34;apache2&#34;&gt;    WSGIDaemonProcess flask_temp python-path=/home/vagrant/flask_temperaturas:/home/vagrant/env/lib/python3.9/site-packages
-    WSGIProcessGroup flask_temp
-    WSGIScriptAlias / /home/vagrant/flask_temperaturas/wsgi.py process-group=flask_temp
-    &amp;lt;Directory /home/vagrant/flask_temperaturas&amp;gt;
-            Require all granted
-    &amp;lt;/Directory&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Vamos a explicar la configuración:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;El &lt;code&gt;DocumentRoot&lt;/code&gt;se indica el directorio donde está la aplicación. Realmente el servidor web siempre va a llamar al fichero WSGI &lt;code&gt;wsgi.py&lt;/code&gt;, pero el DocumentRoot es necesario por si hay contenido estático.&lt;/li&gt;
-&lt;li&gt;La directiva &lt;code&gt;WSGIDaemonProcess&lt;/code&gt;: Se define un grupo de procesos que se van a encargar de ejecutar la aplicación (servidor de aplicaciones). A estos procesos se le ponen un nombre (&lt;code&gt;flask_temp&lt;/code&gt;) y se indica los directorios donde se encuentran la aplicación y los paquetes necesarios (&lt;code&gt;python-path&lt;/code&gt;), como puedes observar se pone el directorio donde esta la aplicación y el directorio donde se encuentran los paquetes en el entorno virtual, separados por dos puntos.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;WSGIProcessGroup&lt;/code&gt;: Nos permite agrupar procesos. Se pone el misimo nombre que hemos definido en la directiva anterior.&lt;/li&gt;
-&lt;li&gt;La directiva &lt;code&gt;WSGIScriptAlias&lt;/code&gt; nos permite indicar que programa se va a ejecutar (el fichero WSGI: &lt;code&gt;/home/debian/flask_temperaturas/wsgi.py&lt;/code&gt;) cuando se haga una petición a la url &lt;code&gt;/&lt;/code&gt; y que proceso lo va a ejecutar.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Reinicia el servicio web y prueba el funcionamiento. Si te da algún erro 500 puedes ver los errores, en &lt;code&gt;/var/log/apache2/error.log&lt;/code&gt;.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Despliegue con Gunicorn</title>
-      <link>https://lmorillas.github.io/recursos-daw/docs/python/gunicorn/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://lmorillas.github.io/recursos-daw/docs/python/gunicorn/</guid>
-      <description>
-        
-        
-        
-
-&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
-&lt;h2 id=&#34;objetivo&#34;&gt;Objetivo&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Despliegue de una web con &lt;strong&gt;gunicorn&lt;/strong&gt; y un proxy inverso&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Qué es un &lt;a href=&#34;https://es.wikipedia.org/wiki/Proxy_inverso&#34;&gt;proxy inverso&lt;/a&gt;?&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Configurar la aplicación &lt;a href=&#34;https://github.com/josedom24/flask_temperaturas&#34;&gt;flask_temperaturas&lt;/a&gt; para que sea servida con apache2 + gunicorn&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Documentación original: &lt;a href=&#34;https://fp.josedomingo.org/iaw2122/u03/gunicorn.html&#34;&gt;https://fp.josedomingo.org/iaw2122/u03/gunicorn.html&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/div&gt;
-
-&lt;h2 id=&#34;documentación&#34;&gt;Documentación&lt;/h2&gt;
-&lt;p&gt;Gunicorn es un servidor web que permite ejecutar una aplicación en un proceso independiente. Usamos los servidores web como proxies inversos que envían la petición python al servidor WSGI que estemos utilizando&lt;/p&gt;
-&lt;h2 id=&#34;configuración-vagrant&#34;&gt;Configuración Vagrant&lt;/h2&gt;
-&lt;p&gt;Configura el forward del puerto 8080 al puerto 8080 de la máquina virtual&lt;/p&gt;
-&lt;h2 id=&#34;instalar-gunicorn&#34;&gt;Instalar Gunicorn&lt;/h2&gt;
-&lt;p&gt;En &lt;strong&gt;/home/vagrant/&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Activa en entorno virtual&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;source&lt;/span&gt; env/bin/activate
-pip install gunicorn
-
-&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;env&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt; /home/vagrant/flask_temperaturas$ gunicorn -w &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2&lt;/span&gt; -b :8080 wsgi
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Comprueba con tu navegador que puedes acceder al puerto 8080 y que responde ahora gunicorn&lt;/p&gt;
-&lt;h2 id=&#34;sigue-la-documentación-basehttpsfpjosedomingoorgiaw2122u03gunicornhtm&#34;&gt;Sigue la &lt;a href=&#34;https://fp.josedomingo.org/iaw2122/u03/gunicorn.htm&#34;&gt;documentación base&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Atento porque puede cambiar alguna dirección&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Crea un servicio en systemd&lt;/li&gt;
-&lt;li&gt;Activa e inicia el servicio&lt;/li&gt;
-&lt;li&gt;Configura Apache2 compo un proxy inverso.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Comprueba con tu navegador que puedes acceder al puerto 8000 y que resonde apache. Elimina el forward del puerto 8080 y reinicia vagrant. Comprueba que la aplicación sigue funcionando.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-  </channel>
-</rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Despliegue de Aplicaciones Web – Webs basadas en Python</title><link>https://lmorillas.github.io/recursos-daw/docs/python/</link><description>Recent content in Webs basadas en Python on Despliegue de Aplicaciones Web</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://lmorillas.github.io/recursos-daw/docs/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Entorno básico con mod_wsgi</title><link>https://lmorillas.github.io/recursos-daw/docs/python/entorno-basico/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lmorillas.github.io/recursos-daw/docs/python/entorno-basico/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;h2 id="objetivo">Objetivo&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>¿Qué es WSGI?&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Configurar la aplicación &lt;a href="https://github.com/josedom24/flask_temperaturas">flask_temperaturas&lt;/a> para que sea servida con apache2 + mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Documentación original: &lt;a href="https://fp.josedomingo.org/iaw2122/u03/modwsgi.html">https://fp.josedomingo.org/iaw2122/u03/modwsgi.html&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;h2 id="documentación">Documentación&lt;/h2>
+&lt;p>&lt;strong>¿Qué es WSGI?&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface">https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html">https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="pasos-instalación">Pasos instalación&lt;/h2>
+&lt;p>Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv&lt;/p>
+&lt;h3 id="clonar-el-repositorio">Clonar el repositorio&lt;/h3>
+&lt;p>En &lt;strong>/home/vagrant/&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ git clone https://github.com/josedom24/flask_temperaturas.git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="prepara-máquina-virtual-para-entornos-de-python">Prepara máquina virtual para entornos de python&lt;/h3>
+&lt;p>En &lt;strong>/home/vagrant/&lt;/strong> ejecuta:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ python3 -m venv env &lt;span style="color:#8f5902;font-style:italic"># Crea un entorno virtual&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ &lt;span style="color:#204a87">source&lt;/span> env/bin/activate &lt;span style="color:#8f5902;font-style:italic"># Activa el entorno virtual&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ &lt;span style="color:#204a87">cd&lt;/span> flask_temperaturas
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ pip install -r requirements.txt &lt;span style="color:#8f5902;font-style:italic"># Instala dependencias&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="instala-y-configura-el-módulo-wsgi-para-apache2">Instala y configura el módulo wsgi para apache2&lt;/h3>
+&lt;pre>&lt;code>apt install libapache2-mod-wsgi-py3
+&lt;/code>&lt;/pre>
+&lt;p>Activa el módulo wsgi
+Nuestra aplicación se encuentra en &lt;code>/home/vagrant/flask_temperaturas&lt;/code>.
+Nuestro entorno virtual está en &lt;code>/home/vagrant/env&lt;/code>.&lt;/p>
+&lt;h3 id="creación-del-fichero-wsgi">Creación del fichero wsgi&lt;/h3>
+&lt;p>Lo primero que vamos a hacer es crear el fichero WSGI, que vamos a llamar &lt;code>wsgi.py&lt;/code> estará en &lt;code>/home/vagrant/flask_temperaturas&lt;/code> y tendrá el siguiente contenido:&lt;/p>
+&lt;pre>&lt;code>from app import app as application
+&lt;/code>&lt;/pre>
+&lt;p>Explicación:&lt;/p>
+&lt;ul>
+&lt;li>El primer &lt;code>app&lt;/code> corresponde con el nombre del módulo, es decir del fichero del programa, en nuestro caso se llama &lt;code>app.py&lt;/code>.&lt;/li>
+&lt;li>El segundo &lt;code>app&lt;/code> corresponde a la aplicación flask creada en &lt;code>app.py&lt;/code>: &lt;code>app = Flask(__name__)&lt;/code>.&lt;/li>
+&lt;li>Importamos la aplicación flask, pero la llamamos &lt;code>application&lt;/code> necesario para que el servidor web pueda enviarle peticiones.&lt;/li>
+&lt;/ul>
+&lt;h3 id="configuración-de-apache2">Configuración de apache2&lt;/h3>
+&lt;p>Yo he utilizado el virtualhost por defecto, si usamos otro virtualhost esta configuración ira en el fichero correspondiente:&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-apache2" data-lang="apache2"> WSGIDaemonProcess flask_temp python-path=/home/vagrant/flask_temperaturas:/home/vagrant/env/lib/python3.9/site-packages
+WSGIProcessGroup flask_temp
+WSGIScriptAlias / /home/vagrant/flask_temperaturas/wsgi.py process-group=flask_temp
+&amp;lt;Directory /home/vagrant/flask_temperaturas&amp;gt;
+Require all granted
+&amp;lt;/Directory&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>Vamos a explicar la configuración:&lt;/p>
+&lt;ul>
+&lt;li>El &lt;code>DocumentRoot&lt;/code>se indica el directorio donde está la aplicación. Realmente el servidor web siempre va a llamar al fichero WSGI &lt;code>wsgi.py&lt;/code>, pero el DocumentRoot es necesario por si hay contenido estático.&lt;/li>
+&lt;li>La directiva &lt;code>WSGIDaemonProcess&lt;/code>: Se define un grupo de procesos que se van a encargar de ejecutar la aplicación (servidor de aplicaciones). A estos procesos se le ponen un nombre (&lt;code>flask_temp&lt;/code>) y se indica los directorios donde se encuentran la aplicación y los paquetes necesarios (&lt;code>python-path&lt;/code>), como puedes observar se pone el directorio donde esta la aplicación y el directorio donde se encuentran los paquetes en el entorno virtual, separados por dos puntos.&lt;/li>
+&lt;li>&lt;code>WSGIProcessGroup&lt;/code>: Nos permite agrupar procesos. Se pone el misimo nombre que hemos definido en la directiva anterior.&lt;/li>
+&lt;li>La directiva &lt;code>WSGIScriptAlias&lt;/code> nos permite indicar que programa se va a ejecutar (el fichero WSGI: &lt;code>/home/debian/flask_temperaturas/wsgi.py&lt;/code>) cuando se haga una petición a la url &lt;code>/&lt;/code> y que proceso lo va a ejecutar.&lt;/li>
+&lt;/ul>
+&lt;p>Reinicia el servicio web y prueba el funcionamiento. Si te da algún erro 500 puedes ver los errores, en &lt;code>/var/log/apache2/error.log&lt;/code>.&lt;/p></description></item><item><title>Docs: Despliegue con Gunicorn</title><link>https://lmorillas.github.io/recursos-daw/docs/python/gunicorn/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lmorillas.github.io/recursos-daw/docs/python/gunicorn/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;h2 id="objetivo">Objetivo&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>Despliegue de una web con &lt;strong>gunicorn&lt;/strong> y un proxy inverso&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Qué es un &lt;a href="https://es.wikipedia.org/wiki/Proxy_inverso">proxy inverso&lt;/a>?&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Configurar la aplicación &lt;a href="https://github.com/josedom24/flask_temperaturas">flask_temperaturas&lt;/a> para que sea servida con apache2 + gunicorn&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Documentación original: &lt;a href="https://fp.josedomingo.org/iaw2122/u03/gunicorn.html">https://fp.josedomingo.org/iaw2122/u03/gunicorn.html&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;h2 id="documentación">Documentación&lt;/h2>
+&lt;p>Gunicorn es un servidor web que permite ejecutar una aplicación en un proceso independiente. Usamos los servidores web como proxies inversos que envían la petición python al servidor WSGI que estemos utilizando&lt;/p>
+&lt;h2 id="configuración-vagrant">Configuración Vagrant&lt;/h2>
+&lt;p>Configura el forward del puerto 8080 al puerto 8080 de la máquina virtual&lt;/p>
+&lt;h2 id="instalar-gunicorn">Instalar Gunicorn&lt;/h2>
+&lt;p>En &lt;strong>/home/vagrant/&lt;/strong>&lt;/p>
+&lt;p>Activa en entorno virtual&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">source&lt;/span> env/bin/activate
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pip install gunicorn
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>env&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> /home/vagrant/flask_temperaturas$ gunicorn -w &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span> -b :8080 wsgi
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Comprueba con tu navegador que puedes acceder al puerto 8080 y que responde ahora gunicorn&lt;/p>
+&lt;h2 id="sigue-la-documentación-basehttpsfpjosedomingoorgiaw2122u03gunicornhtm">Sigue la &lt;a href="https://fp.josedomingo.org/iaw2122/u03/gunicorn.htm">documentación base&lt;/a>&lt;/h2>
+&lt;p>&lt;em>Atento porque puede cambiar alguna dirección&lt;/em>&lt;/p>
+&lt;ul>
+&lt;li>Crea un servicio en systemd&lt;/li>
+&lt;li>Activa e inicia el servicio&lt;/li>
+&lt;li>Configura Apache2 compo un proxy inverso.&lt;/li>
+&lt;/ul>
+&lt;p>Comprueba con tu navegador que puedes acceder al puerto 8000 y que resonde apache. Elimina el forward del puerto 8080 y reinicia vagrant. Comprueba que la aplicación sigue funcionando.&lt;/p></description></item></channel></rss>

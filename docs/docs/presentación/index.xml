@@ -1,17 +1,1 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Despliegue de  Aplicaciones Web – Presentación</title>
-    <link>https://lmorillas.github.io/recursos-daw/docs/presentaci%C3%B3n/</link>
-    <description>Recent content in Presentación on Despliegue de  Aplicaciones Web</description>
-    <generator>Hugo -- gohugo.io</generator>
-    
-	  <atom:link href="https://lmorillas.github.io/recursos-daw/docs/presentaci%C3%B3n/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-      
-        
-      
-    
-    
-  </channel>
-</rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Despliegue de Aplicaciones Web – Presentación</title><link>https://lmorillas.github.io/recursos-daw/docs/presentaci%C3%B3n/</link><description>Recent content in Presentación on Despliegue de Aplicaciones Web</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://lmorillas.github.io/recursos-daw/docs/presentaci%C3%B3n/index.xml" rel="self" type="application/rss+xml"/></channel></rss>

@@ -2,7 +2,8 @@
 title: "Instalación de Drupal"
 linkTitle: "Drupal"
 weight: 15
-  
+draft: True
+
 ---
 
 {{% pageinfo %}}
