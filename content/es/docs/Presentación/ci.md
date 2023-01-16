@@ -10,7 +10,6 @@ description: >
 ## Documentación
 * https://en.wikipedia.org/wiki/CI/CD
 * https://www.redhat.com/en/topics/devops/what-is-ci-cd
-* https://www.youtube.com/watch?v=MNBf-ylhtK0
 {{% /pageinfo %}}
 
 ## ¿Qué es?
