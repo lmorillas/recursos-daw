@@ -1,7 +1,7 @@
 ---
 title: "Webs basadas en Python"
 linkTitle: "Python"
-weight: 5
+weight: 25
 description: >
   Despliegue de webs escritas en python con acceso a bases de datos y cache.
 ---
