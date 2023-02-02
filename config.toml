@@ -16,7 +16,7 @@ defaultContentLanguage = "es"
 defaultContentLanguageInSubdir = false
 # Useful when translating.
 enableMissingTranslationPlaceholders = true
-publishDir = "docs"
+#publishDir = "docs"
 
 #disableKinds = ["taxonomy", "taxonomyTerm"]
 
