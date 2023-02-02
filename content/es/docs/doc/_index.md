@@ -1,7 +1,7 @@
 ---
 title: "Documentación adicional"
-linkTitle: "Documentación"
-weight: 3
+linkTitle: "Varios"
+weight: 300
 description: >
   Documentación adicional al curso de DAW
 
