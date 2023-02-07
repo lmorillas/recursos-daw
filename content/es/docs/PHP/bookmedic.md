@@ -37,7 +37,7 @@ Si nos fijamos en la configuración de php para apache2 con el módulo:
 
 
 ## ¿Qué tienes que hacer?
-A partir de una instalación básica de Apache + MariaDB + PHP, tienes que instalar la aplicación BookMedik, una aplicación web a medida para llevar el control de citas médicas, pacientes, médicos, historiales de citas, áreas médicas y mucho mas, pensado para centros médicos, clínicas y médicos independientes. Puedes encontrar la aplicación en [https://github.com/evilnapsis/bookmedik](https://github.com/evilnapsis/bookmedik).
+A partir de una instalación básica de Apache + MariaDB + PHP, tienes que instalar la aplicación BookMedik, una aplicación web a medida para llevar el control de citas médicas, pacientes, médicos, historiales de citas, áreas médicas y mucho mas, pensado para centros médicos, clínicas y médicos independientes. Puedes encontrar la aplicación en [https://github.com/lmorillas/bookmedik](https://github.com/lmorillas/bookmedik).
 
 Para realizar la instalación sigue los siguientes pasos:
 
