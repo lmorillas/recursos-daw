@@ -9,9 +9,6 @@ description: >
 {{% pageinfo %}}
 ## Objetivos
 
-* Instalar los requisitos (servidor web + python + bbdd + cache) en un servidor
-* Identificar los requisitos de la web a instalar
-* Descargar e instalar un CMS Wordpress
 {{% /pageinfo %}}
 
 

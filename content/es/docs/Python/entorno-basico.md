@@ -1,5 +1,5 @@
 ---
-title: "Entorno básico con mod_wsgi"
+title: "Entorno básico con apache2 + mod_wsgi"
 linkTitle: "Entorno básico"
 weight: 5
 description: >
@@ -20,7 +20,7 @@ description: >
 * https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html
 
 ## Pasos instalación
-Levanta una nueva máquina vagrant Ubuntu-20.04 e instala apache2, git, python3 y python3-venv
+Levanta una máquina vagrant Ubuntu (la Ubuntu-22.04 que estás usando por ejemplo) e instala apache2, git, python3 y python3-venv si no está instalado.
 
 ### Clonar el repositorio
 En **/home/vagrant/** 
@@ -47,9 +47,9 @@ Nuestro entorno virtual está en `/home/vagrant/env`.
 ### Creación del fichero wsgi
 
 Lo primero que vamos a hacer es crear el fichero WSGI, que vamos a llamar `wsgi.py` estará en `/home/vagrant/flask_temperaturas` y tendrá el siguiente contenido:
-
+```python
     from app import app as application
-
+```
 Explicación:
 
 * El primer `app` corresponde con el nombre del módulo, es decir del fichero del programa, en nuestro caso se llama `app.py`.
@@ -72,7 +72,7 @@ Vamos a explicar la configuración:
 * El `DocumentRoot`se indica el directorio donde está la aplicación. Realmente el servidor web siempre va a llamar al fichero WSGI `wsgi.py`, pero el DocumentRoot es necesario por si hay contenido estático.
 * La directiva `WSGIDaemonProcess`: Se define un grupo de procesos que se van a encargar de ejecutar la aplicación (servidor de aplicaciones). A estos procesos se le ponen un nombre (`flask_temp`) y se indica los directorios donde se encuentran la aplicación y los paquetes necesarios (`python-path`), como puedes observar se pone el directorio donde esta la aplicación y el directorio donde se encuentran los paquetes en el entorno virtual, separados por dos puntos.
 * `WSGIProcessGroup`: Nos permite agrupar procesos. Se pone el misimo nombre que hemos definido en la directiva anterior.
-* La directiva `WSGIScriptAlias` nos permite indicar que programa se va a ejecutar (el fichero WSGI: `/home/debian/flask_temperaturas/wsgi.py`) cuando se haga una petición a la url `/` y que proceso lo va a ejecutar.
+* La directiva `WSGIScriptAlias` nos permite indicar que programa se va a ejecutar (el fichero WSGI: `/home/vagrant/flask_temperaturas/wsgi.py`) cuando se haga una petición a la url `/` y que proceso lo va a ejecutar.
 
 Reinicia el servicio web y prueba el funcionamiento. Si te da algún erro 500 puedes ver los errores, en `/var/log/apache2/error.log`.
 
