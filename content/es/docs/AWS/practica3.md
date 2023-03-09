@@ -14,7 +14,8 @@ draft: True
 * Learner Lab: https://awsacademy.instructure.com/courses/33805/modules/items/282557
 
 ### Ayuda configuración:
-* https://docs.aws.amazon.com/efs/latest/ug/wt2-apache-web-server.html
+* https://docs.aws.amazon.com/efs/latest/ug/wt2-apache-web-server.html#wt2-apache-web-server-auto-scale-group
+
 {{% /pageinfo %}}
 
 ## Objetivo:
