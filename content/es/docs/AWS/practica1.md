@@ -11,6 +11,8 @@ description: >
 * Curso: https://awsacademy.instructure.com/courses/33805
 * Learner Lab: https://awsacademy.instructure.com/courses/33805/modules/items/282557
 
+## Ayuda configuración apache:
+Recuerda que la configuración en AMI LINUX es diferente a la de Ubuntu. En este caso, el archivo de configuración de apache es `/etc/httpd/conf/httpd.conf` y el directorio de los virtualhosts es `/etc/httpd/conf.d/` https://thewebhacker.com/setting-up-apache-vhosts-on-aws-linux/
 {{% /pageinfo %}}
 
 ## Objetivo:
