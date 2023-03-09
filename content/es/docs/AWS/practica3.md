@@ -1,7 +1,7 @@
 ---
 title: "Práctica 2 Apaches en EC2 + EFS"
 linkTitle: "Práctica 3 - EC2+EFS"
-weight: 10
+weight: 15
 description: >
   Práctica de instalacion de dos máquinas compartiendo un volumen EFS
 
