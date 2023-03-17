@@ -90,7 +90,12 @@ Configuración del virtualhost y la redirección de http a https
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </VirtualHost>
 ```
+### Vuelve a iniciar apache
 
+```bash
+$ sudo systemctl stop httpd
+```
+Y comprueba que funciona correctamente el certificado y la redirección
 
 ## Configuración renovación automática
 Puedes configurar la renovación automática del certificado
