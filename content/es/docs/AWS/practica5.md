@@ -21,7 +21,8 @@ docs: >
 * https://docs.gunicorn.org/en/stable/deploy.html
 ## Conexión con Putty
 * https://docs.aws.amazon.com/es_es/AWSEC2/latest/UserGuide/putty.html
-
+## Apapche / Nginx proxy inverso
+* https://akira3030.github.io/formacion/articulos/python-flask-gunicorn-docker.html
 {{% /pageinfo %}}
 
 ## Requisitos
@@ -49,3 +50,16 @@ sudo systemctl status temperaturas
 
 ## Configurar Apache como proxy inverso
 
+```apacheconf
+# /etc/httpd/conf.d/temperaturas.conf
+
+DocumentRoot "/home/ec2-user/Weather-App"
+
+ProxyPass / http://127.0.0.1:5000/
+ProxyPassReverse / http://127.0.0.1:5000/
+
+<Directory /home/ec2-user/Weather-App>
+ Require all granted
+</Directory>
+
+```
