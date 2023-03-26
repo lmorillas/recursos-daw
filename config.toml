@@ -229,3 +229,5 @@ ignoreErrors = ["error-missing-instagram-accesstoken"]
   [[module.imports]]
     path = "github.com/google/docsy/dependencies"
     disable = false    
+
+staticDir = ['static']

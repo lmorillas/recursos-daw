@@ -7,9 +7,10 @@ description: >
 draft: Trusss
 
 docs: >
- * https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-amazon-linux-2023.html#letsencrypt-2023
+ * https://github.com/certbot/certbot/tree/eeb88c085557a5db5713d5e95446d4a0a932b7ca/certbot-dns-route53
  * https://levelup.gitconnected.com/adding-a-custom-domain-and-ssl-to-aws-ec2-a2eca296facd
-
+ * https://ddreset.github.io/softwaredev/2019/07/26/Make-SSL-Certificate-for-AWS-S3-Website-with-Let%27s-Encrypt-and-Auto-Renew-It.html
+ * https://github.com/dlapiduz/certbot-s3front
 ---
 
 {{% pageinfo %}}
