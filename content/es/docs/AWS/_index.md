@@ -8,6 +8,7 @@ description: >
 
 {{% pageinfo %}}
 ## Documentación general
+* https://josejuansanchez.org/iaw/taller-aws/
 
 {{% /pageinfo %}}
 

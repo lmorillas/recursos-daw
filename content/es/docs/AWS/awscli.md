@@ -7,7 +7,8 @@ description: >
 draft: True
 
 docs: >
- 
+ * https://tutorialsdojo.com/working-with-aws-command-line-interface-cli/
+ * https://github.com/josejuansanchez/aws-python-boto3
 ---
 
 {{% pageinfo %}}
