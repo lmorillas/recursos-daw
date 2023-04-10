@@ -1,32 +1,40 @@
 ---
 title: "Introducción a los contenedores"
-linkTitle: "Práctica 1 - Apache"
+linkTitle: "Práctica 1"
 weight: 10
 description: >
   
-draft: True
 ---
 
 {{% pageinfo %}}
-## Learner Lab
-* Curso: https://awsacademy.instructure.com/courses/33805
-* Learner Lab: https://awsacademy.instructure.com/courses/33805/modules/items/282557
+## Uso con Vagrant
+* Vagrantfile inicial: https://github.com/lmorillas/vagrant_docker/blob/main/Vagrantfile
 
-### Ayuda configuración apache:
-* Recuerda que la configuración en AMI LINUX es diferente a la de Ubuntu. En este caso, el archivo de configuración de apache es `/etc/httpd/conf/httpd.conf` y el directorio de los virtualhosts es `/etc/httpd/conf.d/` https://thewebhacker.com/setting-up-apache-vhosts-on-aws-linux/
-* Un ejemplo de un Learner Lab con EC2 & Apache: https://www.youtube.com/watch?v=cX80gnEHs_E
 {{% /pageinfo %}}
 
-## Objetivo:
-Instalar apache en una instancia ECS y configurar 3 virtualhosts: uno para la página principal, otro para la página de relojesvex y otro para airspace. Las dos últimas webs están en la tarea de moodle. 
+## Inicio:
+Usa el vagrantfile para crear una máquina virtual con docker instalado. 
+Tambén puedes probar a crear una máquina virtual vacía e instalar docker siguiendo estas instrucciones: https://josedom24.github.io/curso_docker_2022/sesion1/instalacion.html
 
-## Tareas:
-* Instala apache en la instancia EC2 y configura los vhosts
-* Tendrás que configurar el archivo hosts de tu máquina local para que puedas acceder a las páginas web desde tu navegador.
-* La web principal (a la que accedes por la ip pública de la instancia EC2) debe mostrar un mensaje de bienvenida y un enlace a las otras dos páginas.
-* Los archivos de las webs los puedes subir por `scp` (revisa cómo se configura el `ssh` en los Learner Lab) o si lo subes a un sitio público, puedes descargarlo con `wget` y descomprimirlo dentro de la máquina en la nube
+## Hola mundo
+Conéctate a la máquina virtual por ssh y sigue estas instrucciones: https://josedom24.github.io/curso_docker_2022/sesion1/holamundo.html
 
+## Ejecución de comandos en contendores
+Conéctate a la máquina virtual por ssh y sigue estas instrucciones: https://josedom24.github.io/curso_docker_2022/sesion1/contenedor.html
 
+## Ejecución interactiva
+Conéctate a la máquina virtual por ssh y sigue estas instrucciones: https://josedom24.github.io/curso_docker_2022/sesion1/interactivo.html
+
+## Ejecución en detach
+Conéctate a la máquina virtual por ssh y sigue estas instrucciones: https://josedom24.github.io/curso_docker_2022/sesion1/demonio.html
+
+## Contenedor con Apache
+Conéctate a la máquina virtual por ssh y sigue estas instrucciones: https://josedom24.github.io/curso_docker_2022/sesion1/web.html
+
+Ten en cuenta que el contenedor abre el puerto 80 dentro de la máquina virtual. Configura el forward de los puertos para que puedas verlo en tu navegador. 
+
+## Variables de entorno
+https://josedom24.github.io/curso_docker_2022/sesion1/configuracion.html
 
 
 
