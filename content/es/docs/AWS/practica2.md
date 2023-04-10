@@ -1,6 +1,6 @@
 ---
 title: "Despliegue de una web estática con S3 + CloudFront"
-linkTitle: "Práctica2: Static Web S3"
+linkTitle: "P 2: Static Web S3"
 weight: 10
 description: >
   Despligue de una web estática en S3 + CloudFront

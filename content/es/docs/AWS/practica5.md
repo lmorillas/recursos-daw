@@ -1,6 +1,6 @@
 ---
 title: "Práctica - Flask App en EC2"
-linkTitle: "Práćtica 5: Flask App"
+linkTitle: "P 5: Flask App"
 weight: 40
 description: >
    

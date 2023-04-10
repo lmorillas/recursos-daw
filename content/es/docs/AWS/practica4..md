@@ -1,6 +1,6 @@
 ---
 title: "Práctica - Certificado SSL"
-linkTitle: "Práćtica 4: HTTPS"
+linkTitle: "P  4: HTTPS"
 weight: 35
 description: >
    

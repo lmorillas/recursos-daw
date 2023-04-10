@@ -15,4 +15,12 @@ description: >
 {{% /pageinfo %}}
 
 
+## Apache con PHP
+> Entorno LAMP
+* https://josejuansanchez.org/iaw/practica-01-teoria/index.html
 
+### Ejemplo: instalación WordPress
+{{< youtube muAKPiPqW6g >}}
+
+## Apache con Python
+* WSGI https://www.fullstackpython.com/wsgi-servers.html
