@@ -16,6 +16,7 @@ Guión basado en https://aws.amazon.com/es/blogs/aws-spanish/como-alojar-tu-siti
 * Cómo configurar tu sitio web para que se sirva a través de HTTPS
 * Enlazar el nuevo suddominio con CloudFront
 * Manejar S3 y CloudFront con AWS CLI
+* Invalidar páginas del caché de CloudFront
 {{% /pageinfo %}}
 
 # Cómo alojar un sitio web estático en Amazon S3, Amazon CloudFront y Route 53
