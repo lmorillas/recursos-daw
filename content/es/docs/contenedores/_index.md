@@ -9,6 +9,7 @@ description: >
 {{% pageinfo %}}
 ## Documentación general
 * [Introducción a los contenedores de AWS Skill Builder](https://explore.skillbuilder.aws/learn/course/12488)
+* [Tutorial de microsoft](https://learn.microsoft.com/es-es/training/modules/intro-to-docker-containers/)
 * Curso de Docker: https://josedom24.github.io/curso_docker_2022
 
 > Al menos revisa:
