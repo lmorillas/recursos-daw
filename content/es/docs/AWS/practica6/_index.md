@@ -156,6 +156,9 @@ aws s3 cp index.html s3://exhibit-lmorillas/
 
 ### Invalidar cache de cloudfront
 
+La caché de cloudfront [se puede configurar](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) para que expire cada cierto tiempo, pero también podemos [invalidar la caché](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html) de forma manual. Por defecto los objetos estarán 24 horas. Pero si hacemos un cambio y queremos que se vea inmediatamente, podemos invalidar la caché.
+
+Ejemplo con AWS CLI:
 ```bash
 # Listado de distribuciones de cloudfront
 aws cloudfront list-distributions
