@@ -9,7 +9,7 @@ description: >
 {{% pageinfo %}}
 ## Objetivo
 * ¿Qué es WSGI?
-* Configurar la aplicación [flask_temperaturas](https://github.com/josedom24/flask_temperaturas) para que sea servida con apache2 + mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
+* Configurar la aplicación [flask_temperaturas](https://github.com/lmorillas/flask_temperaturas) para que sea servida con apache2 + mod_wsgi. Explica los pasos más importantes y entrega una prueba de funcionamiento.
 
 * Documentación original: https://fp.josedomingo.org/iaw2122/u03/modwsgi.html
 {{% /pageinfo %}}
@@ -20,18 +20,17 @@ description: >
 * https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/leccion4/introduccion_wsgi.html
 
 ## Pasos instalación
-Levanta una máquina vagrant Ubuntu (la Ubuntu-22.04 que estás usando por ejemplo) e instala apache2, git, python3 y python3-venv si no está instalado.
+Levanta una máquina vagrant Ubuntu (la Ubuntu-22.04 que estás usando por ejemplo) e instala `apache2, git, python3 y python3-venv` si no está instalado.
 
 ### Clonar el repositorio
 En **/var/www/** 
 ```bash
-$ git clone https://github.com/lmorillas/flask_temperaturas.git
+$ sudo git clone https://github.com/lmorillas/flask_temperaturas.git
 ```
 
 ### Prepara máquina virtual para entornos de python
 En **/var/www/flask_temperaturas** ejecuta:
 ```bash
-$ sudo apt install python3-venv # Instala python3-venv para crear entornos virtuales
 $ python3 -m venv env   # Crea un entorno virtual
 $ source env/bin/activate  # Activa el entorno virtual
 $ cd flask_temperaturas
@@ -40,7 +39,7 @@ $ pip install -r requirements.txt  # Instala dependencias
 
 ### Instala y configura el módulo wsgi para apache2
 ```bash
-$ sudo  apt install apache2 libapache2-mod-wsgi-py3
+$ sudo  apt install libapache2-mod-wsgi-py3
 ```
 
 ## Activar el módulo wsgi
