@@ -76,5 +76,9 @@ Vamos a explicar la configuración:
 * `WSGIProcessGroup`: Nos permite agrupar procesos. Se pone el misimo nombre que hemos definido en la directiva anterior.
 * La directiva `WSGIScriptAlias` nos permite indicar que programa se va a ejecutar (el fichero WSGI: `/var/www/flask_temperaturas/wsgi.py`) cuando se haga una petición a la url `/` y que proceso lo va a ejecutar.
 
-Reinicia el servicio web y prueba el funcionamiento. Si te da algún erro 500 puedes ver los errores, en `/var/log/apache2/error.log`.
+La carpeta `/var/www/flask_temperaturas` debe tener los siguientes permisos:
+```bash
+$ sudo chown -R www-data:www-data /var/www/flask_temperaturas
+```
 
+Reinicia el servicio web y prueba el funcionamiento. Si te da algún erro 500 puedes ver los errores, en `/var/log/apache2/error.log`.
