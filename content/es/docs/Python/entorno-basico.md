@@ -23,14 +23,15 @@ description: >
 Levanta una máquina vagrant Ubuntu (la Ubuntu-22.04 que estás usando por ejemplo) e instala apache2, git, python3 y python3-venv si no está instalado.
 
 ### Clonar el repositorio
-En **/home/vagrant/** 
+En **/var/www/** 
 ```bash
-$ git clone https://github.com/josedom24/flask_temperaturas.git
+$ git clone https://github.com/lmorillas/flask_temperaturas.git
 ```
 
 ### Prepara máquina virtual para entornos de python
-En **/home/vagrant/** ejecuta:
+En **/var/www/flask_temperaturas** ejecuta:
 ```bash
+$ sudo apt install python3-venv # Instala python3-venv para crear entornos virtuales
 $ python3 -m venv env   # Crea un entorno virtual
 $ source env/bin/activate  # Activa el entorno virtual
 $ cd flask_temperaturas
@@ -38,15 +39,17 @@ $ pip install -r requirements.txt  # Instala dependencias
 ```
 
 ### Instala y configura el módulo wsgi para apache2
-    apt install libapache2-mod-wsgi-py3
+```bash
+$ sudo  apt install apache2 libapache2-mod-wsgi-py3
+```
 
-Activa el módulo wsgi
-Nuestra aplicación se encuentra en `/home/vagrant/flask_temperaturas`.
-Nuestro entorno virtual está en `/home/vagrant/env`.
+## Activar el módulo wsgi
+Nuestra aplicación se encuentra en `/var/www/flask_temperaturas`.
+Nuestro entorno virtual está en `/var/www/flask_temperaturas/env`.
 
 ### Creación del fichero wsgi
 
-Lo primero que vamos a hacer es crear el fichero WSGI, que vamos a llamar `wsgi.py` estará en `/home/vagrant/flask_temperaturas` y tendrá el siguiente contenido:
+Lo primero que vamos a hacer es crear el fichero WSGI, que vamos a llamar `wsgi.py` estará en `/var/www/flask_temperaturas` y tendrá el siguiente contenido:
 ```python
     from app import app as application
 ```
@@ -60,10 +63,10 @@ Explicación:
 
 Yo he utilizado el virtualhost por defecto, si usamos otro virtualhost esta configuración ira en el fichero correspondiente:
 ```apache2
-    WSGIDaemonProcess flask_temp python-path=/home/vagrant/flask_temperaturas:/home/vagrant/env/lib/python3.9/site-packages
+    WSGIDaemonProcess flask_temp python-path=/var/www/flask_temperaturas:/var/www/flask_temperaturas/env/lib/python3.10/site-packages
     WSGIProcessGroup flask_temp
-    WSGIScriptAlias / /home/vagrant/flask_temperaturas/wsgi.py process-group=flask_temp
-    <Directory /home/vagrant/flask_temperaturas>
+    WSGIScriptAlias / /var/www/flask_temperaturas/wsgi.py process-group=flask_temp
+    <Directory /var/www/flask_temperaturas>
             Require all granted
     </Directory>
 ```
@@ -72,7 +75,7 @@ Vamos a explicar la configuración:
 * El `DocumentRoot`se indica el directorio donde está la aplicación. Realmente el servidor web siempre va a llamar al fichero WSGI `wsgi.py`, pero el DocumentRoot es necesario por si hay contenido estático.
 * La directiva `WSGIDaemonProcess`: Se define un grupo de procesos que se van a encargar de ejecutar la aplicación (servidor de aplicaciones). A estos procesos se le ponen un nombre (`flask_temp`) y se indica los directorios donde se encuentran la aplicación y los paquetes necesarios (`python-path`), como puedes observar se pone el directorio donde esta la aplicación y el directorio donde se encuentran los paquetes en el entorno virtual, separados por dos puntos.
 * `WSGIProcessGroup`: Nos permite agrupar procesos. Se pone el misimo nombre que hemos definido en la directiva anterior.
-* La directiva `WSGIScriptAlias` nos permite indicar que programa se va a ejecutar (el fichero WSGI: `/home/vagrant/flask_temperaturas/wsgi.py`) cuando se haga una petición a la url `/` y que proceso lo va a ejecutar.
+* La directiva `WSGIScriptAlias` nos permite indicar que programa se va a ejecutar (el fichero WSGI: `/var/www/flask_temperaturas/wsgi.py`) cuando se haga una petición a la url `/` y que proceso lo va a ejecutar.
 
 Reinicia el servicio web y prueba el funcionamiento. Si te da algún erro 500 puedes ver los errores, en `/var/log/apache2/error.log`.
 
