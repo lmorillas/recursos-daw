@@ -69,6 +69,8 @@ Yo he utilizado el virtualhost por defecto, si usamos otro virtualhost esta conf
             Require all granted
     </Directory>
 ```
+> Fíjate en la ruta `/var/www/flask_temperaturas/env/lib/python3.10/site-packages` Si usas otra versión de python, tendrás que cambiarla.
+
 Vamos a explicar la configuración:
 
 * El `DocumentRoot`se indica el directorio donde está la aplicación. Realmente el servidor web siempre va a llamar al fichero WSGI `wsgi.py`, pero el DocumentRoot es necesario por si hay contenido estático.
