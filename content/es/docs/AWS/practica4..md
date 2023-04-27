@@ -54,11 +54,11 @@ $ sudo /opt/certbot/bin/pip install certbot certbot-apache
 # parar servidor (certbot levanta uno)
 $ sudo systemctl stop httpd
 
-$ sudo certbot certonly --standalone
+$ sudo /opt/certbot/bin/certbot certonly --standalone
 
 # o también más fácil
 
-$ sudo certbot --apache
+$ sudo /opt/certbot/bin/certbot --apache
 
 # Sigue los pasos
 
