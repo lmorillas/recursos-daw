@@ -72,3 +72,72 @@ Comprobación:
 ```bash
 docker-compose --version
 ```
+
+## Un ejemplo complejo
+Vamos a instalar una aplicación más compleja y a interactuar con los contenedores. La aplicación a instalar es [BakeryDemo](https://github.com/wagtail/bakerydemo), un CMS de prueba de Wagtail.
+
+En el README tienes las instrucciones para instalar con docker-compose. 
+Si analizas el docker-compose:
+```yml
+version: '2'
+
+services:
+  db:
+    environment:
+      POSTGRES_DB: app_db
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: changeme
+    restart: unless-stopped
+    image: postgres:14.1
+    expose:
+      - '5432'
+
+  redis:
+    restart: unless-stopped
+    image: redis:6.2
+    expose:
+      - '6379'
+
+  app:
+    environment:
+      DJANGO_SECRET_KEY: changeme
+      DATABASE_URL: postgres://app_user:changeme@db/app_db
+      REDIS_URL: redis://redis
+      DJANGO_SETTINGS_MODULE: bakerydemo.settings.dev
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./bakerydemo:/code/bakerydemo
+    links:
+      - db:db
+      - redis:redis
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+      - redis
+```
+Ves 3 servicios: una base de datos postgres, un redis para caché y la aplicación del CMS (con un Dockerfile específico para python)
+
+### Instalación:
+```bash
+# clonamos repositorio
+git clone https://github.com/wagtail/bakerydemo.git
+cd bakerydemo/
+
+# construir y levantar el contenedor
+docker-compose up --build -d
+
+# Comprobar el estado
+docker-compose ps
+
+# Ejecutar carga inicial de datos. Son instrucciones que se ejecutan dentro del contenedor de la app
+docker-compose run app /venv/bin/python manage.py migrate
+docker-compose run app /venv/bin/python manage.py load_initial_data
+
+# Comprobamos que funciona correctamente
+curl localhost:8000
+```
+
+Para verlo desde el navegador tendrás que abrir el puerto 8000 en el grupo de seguridad y acceder con el navegador a la ip pública de la instancia EC2, puerto 8000
