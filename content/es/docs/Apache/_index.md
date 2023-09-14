@@ -14,6 +14,8 @@ description: >
 * https://www.alvarovf.com/servicios/2020/10/17/virtualhosting-con-apache.html
 {{% /pageinfo %}}
 
+## Entorno LAMP en EC2
+* https://docs.aws.amazon.com/es_es/AWSEC2/latest/UserGuide/ec2-lamp-amazon-linux-2023.html
 
 ## Apache con PHP
 > Entorno LAMP
