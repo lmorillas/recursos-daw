@@ -50,3 +50,33 @@ docs: >
 
 
 
+## Práctica Inicial: Instalación de NGINX
+
+* Acceder a Lab y a la consola
+* EC2
+* Crear instancia
+* >  par clasves
+* ver instancias
+* clic en id de instancia
+* conectar -> conectar
+* > public IP
+```bash
+sudo dnf update
+sudo dnf install nginx -y
+sudo systemctl enable nginx
+sudo systemctl start nginx
+sudo systemctl status nginx
+```
+* Comprobamos si se puede acceder a esa ip desde el navegador
+* No tiene abierto el puerto http (80)
+* Seguridad > grupos de seguridad > editar reglas de entrada
+* agregar regla > tcp > HTTP > anywhere 
+
+* Vuelve a comprobar si puedes acceder a esa ip desde el navegador
+
+* test: cambio datos de mi index.html
+> Dónde está el `index.html`? 
+> `$ cat /etc/nginx/nginx.conf`
+
+
+## Práctica 1: Subir la web que hemos hecho con Hugo

@@ -1,7 +1,7 @@
 ---
 title: "Apache Como Servidor Web"
 linkTitle: "Apache"
-weight: 5
+weight: 12
 description: >
   Instalación de Apache como servidor web
 ---
