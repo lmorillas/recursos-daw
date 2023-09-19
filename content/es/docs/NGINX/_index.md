@@ -1,7 +1,7 @@
 ---
 title: "NGINX"
 linkTitle: "NGINX"
-weight: 10
+weight: 15
 description: >
   NGINX
 docs: > 
@@ -55,7 +55,7 @@ docs: >
 * Acceder a Lab y a la consola
 * EC2
 * Crear instancia
-* >  par clasves
+* >  par claves
 * ver instancias
 * clic en id de instancia
 * conectar -> conectar
@@ -80,3 +80,19 @@ sudo systemctl status nginx
 
 
 ## Práctica 1: Subir la web que hemos hecho con Hugo
+
+* Genera la web con Hugo
+```bash
+$ hugo --minify
+```
+* Conecta con tu learner lab y descárgate la clave del lab `labsuser.pem`. En las instrucciones del lab tienes la explicación detallada para cada sistema operativo.
+* Comprime la carpeta `public` de tu web
+* Sube el fichero comprimido a tu servidor EC2
+```bash
+$ scp -i labuser.pem <fichero_comprimido> ec2-user@<ip_de_tu_ec2>:/home/ec2-user
+```
+* Descomprímelo en la carpeta `/usr/share/nginx/html`
+```bash
+$ sudo unzip <fichero_comprimido> -d /usr/share/nginx/html
+```
+* Comprueba si puedes acceder a tu web desde el navegador

@@ -9,19 +9,17 @@ description: >
 {{% pageinfo %}}
 ## Documentación general
 * https://josejuansanchez.org/iaw/taller-aws/
+* Vídeos de Santos https://www.youtube.com/watch?v=BItIRav99xA&list=PLr35b7rSarzipAPbK04kwuR7t6OJI10Oc&index=6
 
 {{% /pageinfo %}}
 
 
+## ¿Qué es AWS Academy?
+{{<youtube SQnd65QsHYU >}}
 
-## EC2
-### Configuración apache
-```bash
-# isntalar apache
-$ sudo yum -y install httpd
-# iniciar el servicio
-$ sudo service httpd start  
-```
-#### Virtualhosts
-Configura `/etc/httpd/conf.d/vhosts.conf`
-* https://httpd.apache.org/docs/2.4/vhosts/name-based.html
+
+## Crear instancia EC2
+{{<youtube BItIRav99 >}}
+
+### EC2 con User Data
+{{<youtube UfGQuJyctB8>}}
