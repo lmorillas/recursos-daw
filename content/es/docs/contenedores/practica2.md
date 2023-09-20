@@ -1,59 +1,104 @@
 ---
-title: "Despliegue de una web estática con S3 + CloudFront"
-linkTitle: "P 2: Static Web S3"
-weight: 10
+title: "Instalación mediawiki"
+linkTitle: "Práctica 2"
+weight: 15
 description: >
-  Despligue de una web estática en S3 + CloudFront
-
-docs: >
-  https://hackmd.io/@dme26/ryg8sv9Br#
-  https://cosc349.cspages.otago.ac.nz/cache/s3-website-tute.pdf
-  https://github.com/oucs-teaching/cosc349-labs/blob/master/lab08.md
-  https://altitude.otago.ac.nz/cosc349/lab09-vagrant-aws/-/blob/master/Vagrantfile
-  https://blog.knoldus.com/how-to-configure-aws-ec2-instance-using-vagrant/
-  https://docs.aws.amazon.com/pdfs/AmazonS3/latest/userguide/s3-userguide.pdf#WebsiteHosting
-  > https://github.com/aws-samples/amazon-cloudfront-secure-static-site#user-content-amazon-cloudfront-secure-static-website
-
-draft: True
+  
 ---
 
 {{% pageinfo %}}
-## Learner Lab
-* Curso: https://awsacademy.instructure.com/courses/33805
-* Learner Lab: https://awsacademy.instructure.com/courses/33805/modules/items/282557
-
-### Ayuda:
-* https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html
-* [Amazon S3](https://aws.amazon.com/es/s3/?trk=d0993ae4-4193-4d67-b2a9-e83cdb563369&sc_channel=ps&s_kwcid=AL!4422!3!588732081285!p!!g!!s3&ef_id=Cj0KCQiApKagBhC1ARIsAFc7Mc7CCaBhfqHJdFw2YSTyXlrvmr8VVrNBcUNMaO9uCX4QSVelI1ALPKsaAuxDEALw_wcB:G:s&s_kwcid=AL!4422!3!588732081285!p!!g!!s3)
-* Ejemplo S3 + CloudFront: 
-  * https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/examples-s3-origin.html
-  * https://dev.to/aws-builders/deploy-static-website-on-s3-bucket-and-configure-cloudfront-distribution-12em
-### Apliación:
-Puedes usar Amplify para desplegar un sitio estático generado con Jekyll, Hugo, etc https://docs.aws.amazon.com/amplify/latest/userguide/getting-started.html
+## Uso con Vagrant
+* Vagrantfile inicial: https://github.com/lmorillas/vagrant_docker/blob/main/Vagrantfile
+> Este `Vagrantfile` crea una máquina virtual con `docker` y `docker-compose` instalados.
 {{% /pageinfo %}}
 
+## Instalación de mediawiki con contenedores.
 
-![Static Web S3](https://d1.awsstatic.com/s3-pdp-redesign/product-page-diagram_Amazon-S3_HIW.cf4c2bd7aa02f1fe77be8aa120393993e08ac86d.png)
+> Sigue las instrucciones de https://josedom24.github.io/curso_docker_2022/sesion2/mediawiki.html
 
-## Objetivo:
-Desplegar una web estática en S3 y añadir CloudFront como CDN.
+Las instrucciones anteriores instalan mediwiki con la base de datos sqlite. 
 
-## Tarea1: Despliegue de una web estática en S3
-> Sigue las instrucciones de https://docs.aws.amazon.com/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html
-* Crear un bucket S3
-* Configurar el bucket para que sea accesible como web estática
-* Añade los ficheros de una de las webs estáticas del ejercicio anterior. Puedes subirlos desde la misma interfaz web de la consola de AWS. Veremos también cómo puedes hacerlo desde AWS CLI.
+Si quieres usar `MySQL`/`MariaDB` es mejor que uses docker-compose.
 
-## Tarea2: Añadir CloudFront como CDN 
-Sigue el ejemplo de https://aws.amazon.com/es/blogs/aws-spanish/como-alojar-tu-sitio-web-estatico-en-amazon-s3-y-amazon-cloudfront/
+Tienes instrucciones en https://hub.docker.com/_/mediawiki Aquí tienes una versión más detallada usando también `docker-compose`: https://blog.programster.org/deploy-your-own-mediawiki-wiki o https://culturalibre.ar/2022/06/12/montar-una-wiki-de-lo-que-quieras-y-libre/
 
-> Nosotros no integraremos AWS CodePipeline, AWS CodeCommit y AWS CodeBuild.
+Información más detallada y específica hay en https://www.mediawiki.org/wiki/MediaWiki-Docker
 
+## Ejemplo del docker-compose.yml de mediawiki
+```yaml
+# MediaWiki with MariaDB
+#
+# Access via "http://localhost:8080"
+#   (or "http://$(docker-machine ip):8080" if using docker-machine)
+version: '3'
+services:
+  mediawiki:
+    image: mediawiki
+    restart: always
+    ports:
+      - 8080:80
+    links:
+      - database
+    volumes:
+      - images:/var/www/html/images
+      # After initial setup, download LocalSettings.php to the same directory as
+      # this yaml and uncomment the following line and use compose to restart
+      # the mediawiki service
+      # - ./LocalSettings.php:/var/www/html/LocalSettings.php
+  # This key also defines the name of the database host used during setup instead of the default "localhost"
+  database:
+    image: mariadb
+    restart: always
+    environment:
+      # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
+      MYSQL_DATABASE: my_wiki
+      MYSQL_USER: wikiuser
+      MYSQL_PASSWORD: example
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+    volumes:
+      - db:/var/lib/mysql
 
-Aquí tienes un ejemplo paso a paso:
+volumes:
+  images:
+  db:
+```
 
-{{< youtube DgQroj70CJ0 >}}
+## Si no quieres usar docker-compose
 
+Tienes que montar los contenedores de `MariaDB` y `MediaWiki` en la misma red para que puedan comunicarse.
 
+```bash
+docker network create miwiki
+```
 
+```bash
+docker run -d \
+    --network miwiki \
+    --network-alias mariadb \
+    -v todo-mysql-data:/var/lib/mysql \
+    -e MARIADB_USER=userwiki \
+    -e MARIADB_PASSWORD=userwikipwd \
+    -e MARIADB_ROOT_PASSWORD=my-secret-pw \
+    -e MYSQL_DATABASE=miwiki \
+    mariadb:latest
+```
 
+```bash
+ docker run \
+    --network miwiki \
+    --name mimediawiki  \
+    -p 8080:80 \
+    -d mediawiki    
+```
+En la instalación de mediawiki tendrás que usar como host de la base de datos `mariadb` y como usuario `userwiki` y contraseña `userwikipwd` (o lo que configures en el entorno de docker)
+
+Una vez instalado, descarga el archivo `LocalSettings.php` y guárdalo. Para el contenedor de `mediawiki` y vuélvelo a lanzar añadiendo el volumen con el archivo `LocalSettings.php`:
+
+```bash
+docker run \
+    --network miwiki \
+    --name mimediawiki  \
+    -v ./LocalSettings.php:/var/www/html/LocalSettings.php \
+    -p 8080:80 \
+    -d mediawiki    
+```

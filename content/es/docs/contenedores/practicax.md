@@ -14,7 +14,7 @@ docs: >
   https://docs.aws.amazon.com/pdfs/AmazonS3/latest/userguide/s3-userguide.pdf#WebsiteHosting
   > https://github.com/aws-samples/amazon-cloudfront-secure-static-site#user-content-amazon-cloudfront-secure-static-website
 
-draft: False
+draft: True
 ---
 
 {{% pageinfo %}}
@@ -28,7 +28,9 @@ draft: False
 * Ejemplo S3 + CloudFront: 
   * https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/examples-s3-origin.html
   * https://dev.to/aws-builders/deploy-static-website-on-s3-bucket-and-configure-cloudfront-distribution-12em
-### Apliación:
+### Aplicación:
+> Nota: En este momento no con `AWS Academy`
+
 Puedes usar Amplify para desplegar un sitio estático generado con Jekyll, Hugo, etc https://docs.aws.amazon.com/amplify/latest/userguide/getting-started.html
 {{% /pageinfo %}}
 

@@ -11,8 +11,9 @@ En construcción
 {{% /pageinfo %}}
 
 ## Objetivo
-Esta web recoge recursos adicionales al curso de DAW de [https://www.adistanciafparagon.es](https://www.adistanciafparagon.es/course/view.php?id=113)
+Recursos para el módulo de DAW
 
+https://cpilosenlaces.aeducar.es/course/view.php?id=384
 
 
 <!--

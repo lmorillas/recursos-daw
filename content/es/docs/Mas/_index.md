@@ -1,10 +1,10 @@
 ---
-title: "Docker"
-linkTitle: "Docker"
-weight: 5
+title: "Repasos, ampliación y más"
+linkTitle: "Más"
+weight: 500
 description: >
   
-draft: true
+draft: flase
 docs: >
     https://github.com/jamj2000/Docker
     https://docs.docker.com/get-started/
@@ -31,9 +31,4 @@ docs: >
 
 
 ---
-
-{{% pageinfo %}}
-## Objetivos
-
-{{% /pageinfo %}}
 
