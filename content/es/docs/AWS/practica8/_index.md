@@ -117,3 +117,4 @@ $ aws cloudformation delete-stack --stack-name nginx-user-data
 
 ## Propuestas
 * Configurar https con certbot automatizado.
+* Desplegar varias páginas en nginx para diferentes dominios.
