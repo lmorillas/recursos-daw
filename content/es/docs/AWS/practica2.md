@@ -28,8 +28,7 @@ draft: False
 * Ejemplo S3 + CloudFront: 
   * https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/examples-s3-origin.html
   * https://dev.to/aws-builders/deploy-static-website-on-s3-bucket-and-configure-cloudfront-distribution-12em
-### Apliación:
-Puedes usar Amplify para desplegar un sitio estático generado con Jekyll, Hugo, etc https://docs.aws.amazon.com/amplify/latest/userguide/getting-started.html
+
 {{% /pageinfo %}}
 
 
