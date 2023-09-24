@@ -10,7 +10,9 @@ description: >
 {{% pageinfo %}}
 ## Documentación
 * https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html
+* Instalar AWS CLI: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 {{% /pageinfo %}}
+
 
 ## Acceso AWS CloudShell
 Tienes un botón para abrir el CloudShell
