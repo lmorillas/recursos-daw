@@ -42,10 +42,10 @@ name = "mydeployment"
 
 # S3; see https://gocloud.dev/howto/blob/#s3
 # For S3-compatible endpoints, see https://gocloud.dev/howto/blob/#s3-compatible
-# URL = "s3://<Bucket Name>?region=<AWS region>"
+URL = "s3://<Bucket Name>?region=<AWS region>" # Configura aquí tu bucket
 
 # If you are using a CloudFront CDN, deploy will invalidate the cache as needed.
-cloudFrontDistributionID = <ID>
+cloudFrontDistributionID = <ID>  # Sólo si quieres usar cloudfront
 
 # Optionally, you can include or exclude specific files.
 # See https://godoc.org/github.com/gobwas/glob#Glob for the glob pattern syntax.
