@@ -1,6 +1,6 @@
 ---
 title: "Práctica Inicial"
-linkTitle: "Práctica 0 - ECS"
+linkTitle: "Práctica 0 - EC2"
 weight: 5
 description: >
   Primera práctica
